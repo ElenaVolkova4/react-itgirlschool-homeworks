@@ -22,7 +22,7 @@ function App() {
             'Vue.js',
           ],
           datasets: [{
-            label: 'Сравнение фреймворков/библиотек JavaScript по состоянию на 01.10.2021 г. по данным GoogleTrends',
+            // label: 'Сравнение фреймворков/библиотек JavaScript по состоянию на 01.10.2021 г. по данным GoogleTrends',
             data: [83, 23, 2],
             backgroundColor: [
               'blue',
@@ -37,8 +37,9 @@ function App() {
           plugins: {
             title: {
               display: true,
-              text: ['Сравнение фреймворков/библиотек JavaScript по состоянию на 01.10.2021 г. по данным GoogleTrends'],
-              color: 'pink',
+              text: ['Сравнение фреймворков/библиотек JavaScript', 'по состоянию на 01.10.2021 г. по данным GoogleTrends'],
+              // чтобы заголовок переносился по строкам - нужно делать массив
+              color: 'darkviolet',
               fullSize: false,
               // fontSize: '190',
               font: {
