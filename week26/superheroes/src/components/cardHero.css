@@ -1,0 +1,17 @@
+.CardHero {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+
+.img {
+  width: 400px;
+}
+
+
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+}
