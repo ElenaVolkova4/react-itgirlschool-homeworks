@@ -1,3 +1,92 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .RateCard {
-  border: 1px solid black
+  width: 200px;
+  border: 1px solid #FFFFFF;
+
+
+  .rateName {
+    @include flexCenter();
+    height: 40px;
+    border-bottom: 1px solid #FFFFFF;
+    color: white;
+  }
+
+  .ratePrice {
+    @include flexCenter();
+    height: 100px;
+    color: white;
+
+
+    .rateCurrency {
+      vertical-align: top;
+    }
+
+    .ratePriceNumber {
+      font-size: 40px;
+    }
+  }
+
+
+  .rateSpeed {
+    @include flexCenter();
+    height: 50px;
+    background-color: #f8f8f8;
+  }
+
+  .rateDetailes {
+    @include flexCenter();
+    height: 60px;
+    line-height: 20px;
+    background-color: #eeeeee;
+  }
+}
+
+.blue {
+  .rateName {
+    background-color: #229dab;
+  }
+
+  .ratePrice {
+    background-color: #2cc1d5;
+  }
+}
+
+.green {
+  .rateName {
+    background-color: #1c8a70;
+  }
+
+  .ratePrice {
+    background-color: #24ae8d;
+  }
+}
+
+.red {
+  .rateName {
+    background-color: #c4564d;
+  }
+
+  .ratePrice {
+    background-color: #f46a5f;
+  }
+}
+
+.black {
+  .rateName {
+    background-color: #282f37;
+  }
+
+  .ratePrice {
+    background-color: #333a44;
+  }
+}
+
+.selected {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px rgb(88, 87, 87);
 }
