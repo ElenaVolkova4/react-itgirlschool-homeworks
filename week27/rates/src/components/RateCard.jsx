@@ -5,7 +5,7 @@ const RateCard = (props) => {
   // писать просто (props), а потом обращаться к свойствам props.name или в скобках сразу перечислить все свойства, тогда потом писать просто свойства name
 
   // первый вариант (условные классы)
-  const className = classnames('RateCard', {
+  const className = classnames('rateCard', {
     blue: props.ratePrice === '300',
     green: props.ratePrice === '450',
     red: props.ratePrice === '550',
@@ -15,7 +15,8 @@ const RateCard = (props) => {
   )
 
   //второй вариант
-  // const className = `RateCard ${props.ratePrice === '300' ? "blue" : " "}
+  // const className = `rateCard
+  // ${props.ratePrice === '300' ? "blue" : " "}
   // ${props.ratePrice === '450' ? "green" : " "}
   // ${props.ratePrice === '550' ? "red" : " "}
   // ${props.ratePrice === '1000' ? "black" : " "}
