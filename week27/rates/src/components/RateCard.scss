@@ -19,13 +19,19 @@
     @include flexCenter();
     height: 100px;
     color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     .rateCurrency {
-      vertical-align: top;
+      align-self: flex-start;
     }
 
     .ratePriceNumber {
-      font-size: 40px;
+      font-size: 50px;
+    }
+
+    .rateMonth {
+      align-self: flex-end
     }
   }
 

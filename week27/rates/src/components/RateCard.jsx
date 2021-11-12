@@ -27,7 +27,7 @@ const RateCard = (props) => {
     <div className={className}>
       <div className='rateName'><span>{props.rateName}</span></div>
       <div className='ratePrice'>
-        <sup className='rateCurrency'>руб</sup><span className='ratePriceNumber'>{props.ratePrice}</span><sub>/мес</sub></div>
+        <span className='rateCurrency'>руб</span><span className='ratePriceNumber'>{props.ratePrice}</span><span className='rateMonth'>/мес</span></div>
       <div className='rateSpeed'>до&nbsp;<span>{props.rateSpeed}</span>&nbsp;Мбит/сек</div>
       <div className='rateDetailes'>Объем включенного трафика не ограничен</div>
     </div>
