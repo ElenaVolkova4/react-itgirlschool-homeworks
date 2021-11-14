@@ -9,24 +9,29 @@ const Table = () => {
 			<th>English</th>
 			<th>Transcription</th>
 			<th>Translate</th>
-			<th>Birthday</th>
-			<th>Points</th>
-			<th>Average</th>
-			<th>Amount</th>
+			<th>Кнопки</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>Gloria</td>
-			<td>Reeves</td>
-			<td>67439</td>
-			<td>10/18/1985</td>
-			<td>4</td>
-			<td>0.1</td>
-			<td>$50</td>
+			<td>apple</td>
+			<td>-</td>
+			<td>яблоко</td>
+      <td>кнопка "редактировать"</td>
+
 		</tr>
+    <tr>
+			<td>orange</td>
+			<td>-</td>
+			<td>апельсин</td>
+      <td>кнопка "редактировать"</td>
+
+		</tr>
+
 		...
 	</tbody>
+
+
 </table>
 
 

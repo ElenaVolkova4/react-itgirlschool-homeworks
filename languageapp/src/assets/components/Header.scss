@@ -3,6 +3,9 @@
 
 
 .header {
+
+  @include customFont;
+
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   // background: rgb(158, 137, 137);
 }

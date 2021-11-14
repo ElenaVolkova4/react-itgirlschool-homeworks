@@ -26,11 +26,11 @@
 }
 
 .table thead tr th:first-child {
-  border-radius: 20px 0 0 0;
+  border-radius: 10px 0 0 0;
 }
 
 .table thead tr th:last-child {
-  border-radius: 0 20px 0 0;
+  border-radius: 0 10px 0 0;
 }
 
 .table tbody td {
@@ -50,9 +50,9 @@
 }
 
 .table tbody tr:last-child td:first-child {
-  border-radius: 0 0 0 20px;
+  border-radius: 0 0 0 10px;
 }
 
 .table tbody tr:last-child td:last-child {
-  border-radius: 0 0 20px 0;
+  border-radius: 0 0 10px 0;
 }
