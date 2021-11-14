@@ -1,15 +1,18 @@
 import './App.css';
-
-import { words } from './assets/components/dataWords'
-
+import Header from './assets/components/Header';
 
 
-function App() {
 
-  console.log(words)
+// import { words } from './assets/components/dataWords'
+
+
+
+const App = () => {
+
+  // console.log(words)
   return (
     <div className="App">
-    
+    <Header />
     </div>
   );
 }
