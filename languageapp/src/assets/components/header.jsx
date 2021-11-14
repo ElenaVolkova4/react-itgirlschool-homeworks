@@ -1,8 +1,9 @@
 import "./Header.scss";
+import logo from "../images/logo3.jpeg"
 
 const Header = () => {
   return <div className="header">
-    <img src="../images/logo.jpeg" alt="Логотип"/>
+    <img src={logo} alt="Логотип"/>
     <p>Чтобы попасть в Хогвардс - надо знать английский язык!</p>
     <div>Выбрать категорию</div>
     <div>Добавить слово</div>
