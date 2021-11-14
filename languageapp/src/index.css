@@ -4,7 +4,7 @@
 body {
   /* @include customFont; */
 
-  min-height: 100vh;
+  height: 100%;
   background: linear-gradient(180deg, rgba(150, 143, 216, 0.21) 0%, rgb(129, 86, 146) 99%), url('../src/assets/images/fon-iz-garri-pottera.png') no-repeat center top / cover;
 
 }

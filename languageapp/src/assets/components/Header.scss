@@ -5,12 +5,14 @@
 .header {
 
   @include customFont;
+  display: flex;
+  flex-direction: row;
 
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   // background: rgb(158, 137, 137);
 }
 
-img {
-  width: 40px;
-  height: 40px;
+.logo {
+  width: 70px;
+  padding: 10px;
 }

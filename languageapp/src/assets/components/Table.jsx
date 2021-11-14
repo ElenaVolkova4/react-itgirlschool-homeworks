@@ -1,7 +1,7 @@
 import "./Table.scss";
 
 const Table = () => {
-  return <div className="table">
+  return <div className="main_table">
 
 <table class="table">
 	<thead>

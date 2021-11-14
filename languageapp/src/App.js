@@ -1,6 +1,7 @@
-import './App.css';
+import './App.scss';
 import Header from './assets/components/Header';
 import Table from './assets/components/Table';
+import Footer from './assets/components/Footer';
 
 
 
@@ -14,7 +15,11 @@ const App = () => {
   return (
     <div className="App">
     <Header />
-    <Table />
+    <main className="main">
+         <Table />
+    </main>
+ 
+    <Footer />
     </div>
   );
 }
