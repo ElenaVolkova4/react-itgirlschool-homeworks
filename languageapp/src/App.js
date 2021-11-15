@@ -14,12 +14,12 @@ const App = () => {
   // console.log(words)
   return (
     <div className="App">
-    <Header />
-    <main className="main">
-         <Table />
-    </main>
- 
-    <Footer />
+      <Header />
+      <main className="main">
+        <Table />
+      </main>
+
+      <Footer />
     </div>
   );
 }
