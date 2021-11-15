@@ -7,12 +7,33 @@
   @include customFont;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
 
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   // background: rgb(158, 137, 137);
 }
 
 .logo {
   width: 70px;
   padding: 10px;
+}
+
+.header_logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.header_buttons {
+  display: flex;
+  flex-direction: row;
+  // justify-content: flex-end
+}
+
+.header_phrase {
+  color: rgb(238, 224, 237);
+  font-size: 14px;
+  // line-height: 27px;
+  font-weight: bold;
+
 }
