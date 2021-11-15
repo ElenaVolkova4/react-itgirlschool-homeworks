@@ -1,7 +1,7 @@
 import './App.scss';
 import Header from './assets/components/Header';
 import Table from './assets/components/Table';
-import Footer from './assets/components/Footer';
+import Footer from './assets/components/Footer.jsx';
 
 
 

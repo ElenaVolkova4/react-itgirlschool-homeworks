@@ -6,6 +6,7 @@ const Header = () => {
   return <div className="header">
     <img className="logo" src={logo} alt="Логотип приложения"/>
     <p>Чтобы попасть в Хогвардс - надо знать английский язык!</p>
+    <div>Traning</div>
     <button>Добавить слово</button>
   </div>;
  }
