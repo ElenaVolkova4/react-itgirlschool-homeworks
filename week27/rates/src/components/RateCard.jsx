@@ -46,7 +46,7 @@ const RateCard = (props) => {
 
   return (
     <div className={className}
-      isSelected={isSelected} //или props.isSelected???
+      // isSelected={isSelected} //для задания week27? я уже запуталась
       onClick={handleChange}
     // onMouseOver={handleChange} //при наведении мыши
     >
