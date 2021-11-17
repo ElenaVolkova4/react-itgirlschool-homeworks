@@ -28,18 +28,18 @@ const RateCard = (props) => {
 
 
   //попытка добавить возможность выбирать тариф нажатием на него
-  const [isSelected, setSelected] = useState(props.isSelected || false); //это исходное состояние (у карточек нет свойства isSelected)
+  // const [isSelected, setSelected] = useState(props.isSelected || false); //это исходное состояние (у карточек нет свойства isSelected)
 
-  const handleChange = () => { //функция для обновления состояния
-    setSelected(!isSelected);
-  };
+  // const handleChange = () => { //функция для обновления состояния
+  //   setSelected(!isSelected);
+  // };
 
   const className = classnames('rateCard', {
     blue: props.ratePrice === '300', //класс голубой: если цена=300
     green: props.ratePrice === '450',
     red: props.ratePrice === '550',
     black: props.ratePrice === '1000',
-    selected: isSelected,
+    selected: props.isSelected, //если без второго варианта, то просто isSelected)
   }
   )
 
@@ -47,7 +47,10 @@ const RateCard = (props) => {
   return (
     <div className={className}
       // isSelected={isSelected} //для задания week27? я уже запуталась
-      onClick={handleChange}
+      // onClick={handleChange}//для моего варианта
+
+      onClick={props.onClick}
+
     // onMouseOver={handleChange} //при наведении мыши
     >
 
