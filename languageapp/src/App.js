@@ -1,16 +1,13 @@
+import React from 'react';
+
 import './App.scss';
 import Header from './assets/components/Header';
 import Table from './assets/components/Table';
-import Footer from './assets/components/Footer.jsx';
-
-
+import Footer from './assets/components/Footer';
 
 // import { words } from './assets/components/dataWords'
 
-
-
 const App = () => {
-
   // console.log(words)
   return (
     <div className="App">
@@ -22,6 +19,6 @@ const App = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
