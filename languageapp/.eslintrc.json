@@ -6,10 +6,10 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react/jsx-runtime", //добавлено, чтобы не было ошибки 'React' must be in scope when using JSX (и можно не импортировать React from 'react')
     "plugin:react-hooks/recommended", //правила для поддержки хуков React
     "plugin:jsx-a11y/recommended", //правила доступности для людей с ограниченными возможностями
-    // "plugin:import/recommended", //правила, которые будут отвечать за синтаксис импортов и экспортов
+    "plugin:import/recommended", //правила, которые будут отвечать за синтаксис импортов и экспортов
+    "plugin:react/jsx-runtime", //добавлено, чтобы не было ошибки 'React' must be in scope when using JSX (и можно не импортировать React from 'react')
     "prettier"
     // "airbnb" //из-за этого все ломается!!
   ],
