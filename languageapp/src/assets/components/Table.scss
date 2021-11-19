@@ -1,3 +1,5 @@
+@import "../styles/variables.scss";
+
 .table {
   width: 100%;
   border: none;
@@ -11,19 +13,20 @@
   text-align: left;
   border: none;
   padding: 10px 15px;
-  background: #EDEDED;
-  font-size: 14px;
-  border-top: 1px solid #ddd;
+  background: $customLightTextColor;
+  font-size: 16px;
+  font-weight: 900; //почему не срабатывает?
+  border-top: 1px solid $customLightTextColor;
 }
 
 .table tr th:first-child,
 .table tr td:first-child {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid $customLightTextColor;
 }
 
 .table tr th:last-child,
 .table tr td:last-child {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid $customLightTextColor;
 }
 
 .table thead tr th:first-child {
@@ -43,11 +46,11 @@
 }
 
 .table tbody tr:nth-child(even) {
-  background: #F8F8F8;
+  background: $customLightTextColor;
 }
 
 .table tbody tr:last-child td {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $customLightTextColor;
 }
 
 .table tbody tr:last-child td:first-child {

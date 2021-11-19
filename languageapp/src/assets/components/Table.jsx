@@ -1,4 +1,6 @@
 import "./Table.scss";
+import TableRow from "./TableRow";
+
 
 const Table = () => {
   return (
@@ -9,7 +11,7 @@ const Table = () => {
             <th>English</th>
             <th>Transcription</th>
             <th>Translate</th>
-            <th>Кнопки</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +27,9 @@ const Table = () => {
             <td>апельсин</td>
             <td>кнопка редактировать</td>
           </tr>
+<TableRow />
+<TableRow />
+
         </tbody>
       </table>
     </div>

@@ -3,7 +3,7 @@ import classnames from "classnames";
 // import React, { useState } from 'react'; //useState это хук
 
 const RateCard = (props) => {
-  // писать просто (props), а потом обращаться к свойствам props.name или в скобках сразу перечислить все свойства, тогда потом писать просто свойства name, либо задавать отдельную переменную (const { id, header, text, sum } = props;)
+  // писать просто (props), а потом обращаться к свойствам props.name или в скобках сразу перечислить все свойства, тогда потом писать просто свойства name, либо задавать отдельную переменную (const { id, header, text, sum } = props;), либо написать (вынести) одно свойство и написать ...other
 
   // Стили - первый вариант (условные классы) задание для week27
   // const className = classnames('rateCard', {
