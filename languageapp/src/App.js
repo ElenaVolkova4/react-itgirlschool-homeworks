@@ -25,37 +25,24 @@ const App = () => {
               key={word.id}
               english={word.english}
               transcription={word.transcription}
-              russian={word.russian}
+          russian={word.russian}
             />
           ))} */}
 
-          {/* одна карточка */}
+          {/* по одной карточке */}
           <WordCard
             key={words[0].id}
             english={words[0].english}
             transcription={words[0].transcription}
             russian={words[0].russian}
           />
-                    <WordCard
+          <WordCard
             key={words[1].id}
             english={words[1].english}
             transcription={words[1].transcription}
             russian={words[1].russian}
           />
-
         </div>
-
-        {/* {
-          rates.map((rate, i) =>//переменную rate мы назвали сами
-            <RateCard
-              key={rate.id}//надо обязательно задавать ключ
-              // isSelected={i === 2} //для задания week27
-
-              onClick={() => handleClick(i)} // создаем новую функцию, которая вызовет handleClick с индексом этой карточки
-              isSelected={i === selectedCardIndex}
-
-              rateName={rate.rateName} ratePrice={rate.ratePrice} rateSpeed={rate.rateSpeed} />)
-        } */}
 
         <Table />
       </main>

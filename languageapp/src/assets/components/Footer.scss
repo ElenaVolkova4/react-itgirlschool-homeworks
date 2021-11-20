@@ -1,8 +1,8 @@
-@import "../styles/variables.scss";
+@import '../styles/variables.scss';
 
 .footer {
   display: flex;
   justify-content: space-evenly;
-
+  padding-bottom: 20px;
   color: $customLightTextColor;
 }

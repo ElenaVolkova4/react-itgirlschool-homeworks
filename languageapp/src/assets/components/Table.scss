@@ -1,22 +1,14 @@
-@import "../styles/variables.scss";
+@import '../styles/variables.scss';
+
+.main_table {
+  max-width: 800px;
+}
 
 .table {
   width: 100%;
   border: none;
   margin-bottom: 20px;
   border-collapse: separate;
-
-}
-
-.table thead th {
-  font-weight: bold;
-  text-align: left;
-  border: none;
-  padding: 10px 15px;
-  background: $customLightTextColor;
-  font-size: 16px;
-  font-weight: 900; //почему не срабатывает?
-  border-top: 1px solid $customLightTextColor;
 }
 
 .table tr th:first-child,
@@ -42,11 +34,15 @@
   border: none;
   padding: 10px 15px;
   font-size: 14px;
-  vertical-align: top;
+}
+.table tbody tr:nth-child(odd) {
+  background: rgb(142, 107, 152, 0.75);
+  color: $customLightTextColor;
 }
 
 .table tbody tr:nth-child(even) {
   background: $customLightTextColor;
+  color: black;
 }
 
 .table tbody tr:last-child td {

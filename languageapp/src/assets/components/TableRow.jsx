@@ -1,12 +1,17 @@
-import "./TableRow.scss";
+import './TableRow.scss';
+import ButtonEdit from './Buttons/Button_edit';
+import ButtonDelete from './Buttons/Button_delete';
 
-const TableRow = () => {
+const TableRow = props => {
   return (
     <tr className="tableRow">
-            <td>apple</td>
-            <td>-</td>
-            <td>яблоко</td>
-            <td>кнопка редактировать &quot;кнопка удалить</td>
+      <td>{props.english}</td>
+      <td>{props.transcription}</td>
+      <td>{props.russian}</td>
+      <td className="tableRow_actions">
+        <ButtonEdit />
+        <ButtonDelete />
+      </td>
     </tr>
   );
 };
