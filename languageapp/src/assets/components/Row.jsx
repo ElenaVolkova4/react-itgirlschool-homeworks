@@ -5,8 +5,8 @@ import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
 
-const TableRow = props => {
-  const [editMode, setEditMode] = useState(false); //режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
+const TableRow = function (props) {
+  const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
   const handleClick = () => setEditMode(!editMode);
   return (
     <tr className="tableRow">
