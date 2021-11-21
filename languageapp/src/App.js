@@ -8,11 +8,16 @@ import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
 
 const App = () => {
-  const [selectedCardIndex, showTranslate] = useState(-1); //Состояние, которое хранит индекс выделенной карточки
+  // const [selectedCardIndex, showTranslate] = useState(-1); //Состояние, которое хранит индекс выделенной карточки
 
-  const handleClick = id => {
-    showTranslate(id);
-  };
+  // const handleClick = id => {
+  //   showTranslate(id);
+  // };
+
+  const [value, setValue] = useState('text');
+  function handleChange(event) {
+    setValue(event.target.value);
+  }
 
   return (
     <div className="App">
@@ -43,8 +48,12 @@ const App = () => {
             russian={words[1].russian}
           />
         </div>
-
         <Table />
+        <div>
+          <input value={value} onChange={handleChange} />
+          <p>text: {value}</p>
+        </div>
+        ;
       </main>
 
       <Footer />

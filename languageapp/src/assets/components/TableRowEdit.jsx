@@ -1,22 +1,22 @@
 import './TableRowEdit.scss';
-import ButtonEdit from './Buttons/Button_edit';
-import ButtonDelete from './Buttons/Button_delete';
+import ButtonSave from './Buttons/Button_save';
+import ButtonCancel from './Buttons/Button_cancel';
 
 const TableRowEdit = props => {
   return (
     <tr className="tableRowEdit">
       <td className="tableRowEdit_input">
-        <input></input>
+        <input value={props.english}></input>
       </td>
       <td>
-        <input></input>
+        <input value={props.transcription}></input>
       </td>
       <td>
-        <input></input>
+        <input value={props.russian}></input>
       </td>
       <td className="tableRow_actions">
-        <ButtonEdit />
-        <ButtonDelete />
+        <ButtonSave />
+        <ButtonCancel />
       </td>
     </tr>
   );
