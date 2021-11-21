@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import './Table.scss';
 import Table_header from './Table_header';
 import TableRow from './TableRow';
