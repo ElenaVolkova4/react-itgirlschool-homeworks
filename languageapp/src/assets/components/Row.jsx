@@ -24,19 +24,17 @@ const TableRow = props => {
         {editMode ? <input defaultValue={props.russian} /> : props.russian}
       </td>
 
-      <td className="tableRow_actions">
-        {editMode ? (
-          <td className="tableRow_actions">
-            <ButtonSave onClick={handleClick} />
-            <ButtonCancel />
-          </td>
-        ) : (
-          <td className="tableRow_actions">
-            <ButtonEdit onClick={handleClick} />
-            <ButtonDelete />
-          </td>
-        )}
-      </td>
+      {editMode ? (
+        <td className="tableRow_actions">
+          <ButtonSave onClick={handleClick} />
+          <ButtonCancel />
+        </td>
+      ) : (
+        <td className="tableRow_actions">
+          <ButtonEdit onClick={handleClick} />
+          <ButtonDelete />
+        </td>
+      )}
     </tr>
   );
 };
