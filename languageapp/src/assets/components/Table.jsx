@@ -6,7 +6,7 @@ import TableRowEdit from './TableRowEdit';
 import { words } from './dataWords';
 
 const Table = () => {
-  const [added, setValue] = useState(value); //value уже написанного,
+  const [added, setValue] = useState(value); //value уже написанного, или innerHTML
   const handleClick = () => {
     setValue(value); //value inputa (то, что ввели при редактировании)
   };
@@ -17,8 +17,8 @@ const Table = () => {
         <Table_header />
         <tbody>
           {/* попытка вывода одной строки */}
-          {/* {added ? (
-            <TableRowEdit onClick={handleClick} />
+          {added ? (
+            <TableRowEdit onClick={handleClick} /> //как добраться до определенной кнопки?
           ) : (
             <TableRow
               // key={word[0].id}
@@ -26,7 +26,7 @@ const Table = () => {
               transcription={word[0].transcription}
               russian={word[0].russian}
             />
-          )} */}
+          )}
 
           {/* все строчки таблицы (все слова) */}
           <TableRowEdit />
