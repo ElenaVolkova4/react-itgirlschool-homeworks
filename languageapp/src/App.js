@@ -49,13 +49,7 @@ const App = () => {
           />
         </div>
         <Table />
-        <div>
-          <input value={value} onChange={handleChange} />
-          <p>text: {value}</p>
-        </div>
-        ;
       </main>
-
       <Footer />
     </div>
   );
