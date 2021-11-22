@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Table.scss';
-import Table_header from './Table_header';
+import TableHeader from './TableHeader';
 import TableRow from './Row';
 import { words } from './dataWords';
 
@@ -8,7 +8,7 @@ const Table = () => {
   return (
     <div className="main_table">
       <table className="table">
-        <Table_header />
+        <TableHeader />
         <tbody>
           {words.map((word, i) => (
             <TableRow

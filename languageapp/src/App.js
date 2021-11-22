@@ -14,10 +14,10 @@ const App = () => {
   //   showTranslate(id);
   // };
 
-  const [value, setValue] = useState('text');
-  function handleChange(event) {
-    setValue(event.target.value);
-  }
+  // const [value, setValue] = useState('text');
+  // function handleChange(event) {
+  //   setValue(event.target.value);
+  // }
 
   return (
     <div className="App">

@@ -1,6 +1,7 @@
+import React from 'react';
 import './Table_header.scss';
 
-const Table_header = () => {
+const TableHeader = () => {
   return (
     <thead className="table_header">
       <tr>
@@ -13,4 +14,4 @@ const Table_header = () => {
   );
 };
 
-export default Table_header;
+export default TableHeader;

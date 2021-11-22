@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './TableRow.scss';
 import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
