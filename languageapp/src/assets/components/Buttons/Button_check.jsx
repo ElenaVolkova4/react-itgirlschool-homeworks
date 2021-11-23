@@ -1,3 +1,4 @@
+import React from 'react';
 import './Button_check.scss';
 
 const ButtonCheck = props => {
