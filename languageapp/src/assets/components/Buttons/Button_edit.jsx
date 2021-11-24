@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './Button_actions.scss';
 import './Button_edit.scss';
 
