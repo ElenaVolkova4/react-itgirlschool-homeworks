@@ -37,7 +37,7 @@ const App = () => {
           <CardsContainer />
 
           {/* по одной карточке */}
-          <WordCard
+          {/* <WordCard
             key={words[0].id}
             english={words[0].english}
             transcription={words[0].transcription}
@@ -48,7 +48,7 @@ const App = () => {
             english={words[1].english}
             transcription={words[1].transcription}
             russian={words[1].russian}
-          />
+          /> */}
         </div>
         <Table />
       </main>

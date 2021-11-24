@@ -10,23 +10,38 @@ const CardsContainer = () => {
   // const HandleClick = i => {
   //   setselectedCardIndex(i);
   // };
+
   const HandleClickNext = () => {
-    setselectedCardIndex(selectedCardIndex + 1);
+    const newIndex = selectedCardIndex + 1;
+    if (newIndex < words.length) {
+      setselectedCardIndex(newIndex);
+    }
   };
+
   const HandleClickPrev = () => {
-    setselectedCardIndex(selectedCardIndex - 1);
+    const newIndex = selectedCardIndex - 1;
+    if (newIndex >= 0) {
+      setselectedCardIndex(newIndex);
+    }
+
+    // setselectedCardIndex(selectedCardIndex - 1);
   };
 
   return (
     <div className="cardsContainer">
-      <ArrowPrev onClick={HandleClickPrev} />
-      <WordCard
-        key={words[selectedCardIndex].id}
-        english={words[selectedCardIndex].english}
-        transcription={words[selectedCardIndex].transcription}
-        russian={words[selectedCardIndex].russian}
-      />{' '}
-      <ArrowNext onClick={HandleClickNext} />
+      <div className="cardsContainer_cards">
+        <ArrowPrev onClick={HandleClickPrev} />
+        <WordCard
+          key={words[selectedCardIndex].id}
+          english={words[selectedCardIndex].english}
+          transcription={words[selectedCardIndex].transcription}
+          russian={words[selectedCardIndex].russian}
+        />
+        <ArrowNext onClick={HandleClickNext} />
+      </div>
+      <div className="cardsContainer_count">
+        {selectedCardIndex + 1} / {words.length}
+      </div>
     </div>
   );
 };

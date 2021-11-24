@@ -1,4 +1,4 @@
-@import "../styles/variables.scss";
+@import '../styles/variables.scss';
 
 .wordCard {
   width: 150px;
@@ -9,6 +9,11 @@
   align-items: center;
   gap: 10px;
 
-  border: 1px solid black;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 234, 248, 0.7) 0%,
+    rgb(239, 177, 255, 0.7) 99%
+  );
+  color: rgb(49, 9, 87);
   border-radius: 10px;
 }
