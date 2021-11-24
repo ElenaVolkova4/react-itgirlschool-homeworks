@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './assets/components/Header.jsx';
 import WordCard from './assets/components/WordCard.jsx';
 import { words } from './assets/components/dataWords.js';
+import CardsContainer from './assets/components/CardsContainer.jsx';
 
 import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
@@ -33,6 +34,7 @@ const App = () => {
           russian={word.russian}
             />
           ))} */}
+          <CardsContainer />
 
           {/* по одной карточке */}
           <WordCard
