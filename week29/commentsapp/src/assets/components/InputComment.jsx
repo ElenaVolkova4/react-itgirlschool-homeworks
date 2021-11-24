@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import "./InputComment.scss";
 
-const InputComment = (props) => {
+const InputComment = () => {
   return (
     <div>
       <label htmlFor="comment">Введите комментарии:</label>
