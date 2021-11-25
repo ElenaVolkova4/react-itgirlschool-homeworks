@@ -9,7 +9,7 @@ function App() {
   let comment = document.getElementById("comment").value;
   const [addedComment, setComment] = useState(comments);
 
-  const HandleClick = () => {
+  const handleClick = () => {
     //ф-ция, которая добавляеть value InputComment в массив комментов comments
     comments.push(comment);
     setComment(comments);
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <div className="App_comments"></div>
       <input id="comment" />
-      <ButtonSend onClick={HandleClick} />
+      <ButtonSend onClick={handleClick} />
 
       {/* компоненты */}
       {/* <Comments />

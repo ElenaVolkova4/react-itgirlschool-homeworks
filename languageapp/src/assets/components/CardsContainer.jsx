@@ -7,37 +7,32 @@ import ArrowPrev from './ArrowPrev';
 
 const CardsContainer = () => {
   const [selectedCardIndex, setselectedCardIndex] = useState(0);
-  // const HandleClick = i => {
-  //   setselectedCardIndex(i);
-  // };
 
-  const HandleClickNext = () => {
+  const handleClickNext = () => {
     const newIndex = selectedCardIndex + 1;
     if (newIndex < words.length) {
       setselectedCardIndex(newIndex);
     }
   };
 
-  const HandleClickPrev = () => {
+  const handleClickPrev = () => {
     const newIndex = selectedCardIndex - 1;
     if (newIndex >= 0) {
       setselectedCardIndex(newIndex);
     }
-
-    // setselectedCardIndex(selectedCardIndex - 1);
   };
 
   return (
     <div className="cardsContainer">
       <div className="cardsContainer_cards">
-        <ArrowPrev onClick={HandleClickPrev} />
+        <ArrowPrev onClick={handleClickPrev} />
         <WordCard
           key={words[selectedCardIndex].id}
           english={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           russian={words[selectedCardIndex].russian}
         />
-        <ArrowNext onClick={HandleClickNext} />
+        <ArrowNext onClick={handleClickNext} />
       </div>
       <div className="cardsContainer_count">
         {selectedCardIndex + 1} / {words.length}

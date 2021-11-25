@@ -6,3 +6,8 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+.disabled {
+  border: 1px solid grey;
+  color: grey;
+}
