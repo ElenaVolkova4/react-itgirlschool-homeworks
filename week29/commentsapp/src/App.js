@@ -1,29 +1,37 @@
 import React, { useState } from "react";
 import "./App.css";
 import ButtonSend from "./assets/components/ButtonSend.jsx";
-import Comments from "./assets/components/Comments.jsx";
-import InputComment from "./assets/components/InputComment.jsx";
 
 function App() {
-  const comments = []; //массив, куда должны попадать сообщения, введенные в InputComment
-  let comment = document.getElementById("comment").value;
-  const [addedComment, setComment] = useState(comments);
+  const [newComment, setNewComment] = useState(""); //новый комментарий в инпуте
+  const [addedComment, setComment] = useState([]); //массив, куда должны попадать сообщения, введенные в InputComment
 
   const handleClick = () => {
-    //ф-ция, которая добавляеть value InputComment в массив комментов comments
-    comments.push(comment);
-    setComment(comments);
+    //ф-ция, которая добавляет value inputа в массив комментов и очищает инпут
+
+    const commentsCopy = [...addedComment]; //массив с комментами
+    console.log(commentsCopy);
+    commentsCopy.push(newComment); //добавление нового коммента в массив
+    setComment(commentsCopy);
+    setNewComment(""); //очищение инпута
+    // {
+    //   for (let i = 0; i < addedComment.length; i++) {
+    //     document.querySelector(".App_comments").innerHTML = addedComment[i] + <br>;
+    //   }
+    // }
+    // let comments = addedComment.map(function (item) {
+    //   return <span>{item}</span>;
+    // });
   };
   return (
     <div className="App">
-      <div className="App_comments"></div>
-      <input id="comment" />
+      <div className="App_comments">{addedComment}</div>
+      <input
+        id="comment"
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+      />
       <ButtonSend onClick={handleClick} />
-
-      {/* компоненты */}
-      {/* <Comments />
-      <InputComment />
-      <ButtonSend onClick={addComment} /> */}
     </div>
   );
 }
