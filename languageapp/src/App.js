@@ -9,22 +9,13 @@ import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
 
 const App = () => {
-  // const [selectedCardIndex, showTranslate] = useState(-1); //Состояние, которое хранит индекс выделенной карточки
-
-  // const handleClick = id => {
-  //   showTranslate(id);
-  // };
-
-  // const [value, setValue] = useState('text');
-  // function handleChange(event) {
-  //   setValue(event.target.value);
-  // }
-
   return (
     <div className="App">
       <Header />
       <main className="main">
         <div className="main_cards">
+          <CardsContainer />
+
           {/* вывод всех карточек
           {words.map((word, i) => (
             <WordCard
@@ -34,7 +25,6 @@ const App = () => {
           russian={word.russian}
             />
           ))} */}
-          <CardsContainer />
 
           {/* по одной карточке */}
           {/* <WordCard

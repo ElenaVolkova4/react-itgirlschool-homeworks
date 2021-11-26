@@ -6,6 +6,20 @@ function App() {
   const [newComment, setNewComment] = useState(""); //новый комментарий в инпуте
   const [addedComment, setComment] = useState([]); //массив, куда должны попадать сообщения, введенные в InputComment
 
+  //от Зои
+  //наведение красоты массива комментов
+  const saveFunction = () => {
+    const finalMessage = value.replace(/ +/g, " ").trim();
+    if (finalMessage) {
+      setArray([finalMessage.replace(/(\r\n|\n|\r)/gm, ""), ...array]);
+      console.log(array);
+    } else {
+      setValue("");
+      return;
+    }
+    setValue("");
+  };
+
   const handleClick = () => {
     //ф-ция, которая добавляет value inputа в массив комментов и очищает инпут
 

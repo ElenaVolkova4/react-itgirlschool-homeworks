@@ -25,14 +25,20 @@ const CardsContainer = () => {
   return (
     <div className="cardsContainer">
       <div className="cardsContainer_cards">
-        <ArrowPrev onClick={handleClickPrev} />
+        <ArrowPrev
+          onClick={handleClickPrev}
+          disabled={selectedCardIndex === 0}
+        />
         <WordCard
           key={words[selectedCardIndex].id}
           english={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           russian={words[selectedCardIndex].russian}
         />
-        <ArrowNext onClick={handleClickNext} />
+        <ArrowNext
+          onClick={handleClickNext}
+          disabled={selectedCardIndex === words.length - 1}
+        />
       </div>
       <div className="cardsContainer_count">
         {selectedCardIndex + 1} / {words.length}

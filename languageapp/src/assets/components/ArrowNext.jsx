@@ -2,8 +2,16 @@ import React from 'react';
 import './Arrow.scss';
 
 const ArrowNext = props => {
+  const className = `arrow
+  ${props.disabled ? 'disabled' : ' '}
+  `;
+
   return (
-    <div className="arrowNext arrow" onClick={props.onClick}>
+    <div
+      className={className}
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
       &#8827;
     </div>
   );
