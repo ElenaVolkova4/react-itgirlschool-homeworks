@@ -34,11 +34,25 @@
   gap: 10px;
   align-items: center;
   // justify-content: flex-end;
-  button {
+  .header_button {
+    padding: 8px;
+
     cursor: pointer;
     border-radius: 5px;
     color: rgb(49, 9, 87);
+    font-weight: bolder;
     background-color: $customLightTextColor;
+
+    &:hover {
+      //наведение на кнопку
+      background: rgb(238, 205, 238);
+    }
+
+    &:active {
+      //нажатие на кнопку
+      outline: none;
+      box-shadow: 0 0 0 4px rgb(142, 107, 152, 0.75);
+    }
   }
 }
 

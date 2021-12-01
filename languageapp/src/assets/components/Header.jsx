@@ -13,18 +13,18 @@ const Header = () => {
           </Link>
 
           <p className="header_phrase">
-            Чтобы попасть в Хогвардс - надо знать английский язык!
+            Чтобы попасть в Хогвартс - надо знать английский язык!
           </p>
         </div>
         <div className="header_buttons">
           <Link to="/">
-            <button>Home</button>
+            <div className="header_button">Home</div>
           </Link>
           <Link to="/game">
-            <button>Training</button>
+            <div className="header_button">Training</div>
           </Link>
 
-          <button>Add new word</button>
+          <div className="header_button">Add new word</div>
         </div>
       </div>
     </Router>

@@ -5,7 +5,7 @@ import error from '../images/1.png';
 const ErrorPage = () => {
   return (
     <div className="errorPage">
-      <p className="errorPage_text">Такого пути в Хогвардс не существует!</p>
+      <p className="errorPage_text">Такого пути в Хогвартс не существует!</p>
       <img className="errorPic" src={error} alt="Ошибка!" />
     </div>
   );
