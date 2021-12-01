@@ -1,15 +1,20 @@
 @import '../styles/variables.scss';
 
 .header {
+  //для закрепления меню всегда наверху страницы
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+
+  padding-bottom: 30px;
   @include customFont;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 40px; //работает?
 
-  padding-bottom: 40px;
-
-  // background: rgb(158, 137, 137);
+  background: rgb(158, 137, 137, 0.3);
 }
 
 .logo {

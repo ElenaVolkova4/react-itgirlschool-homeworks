@@ -1,6 +1,8 @@
 @import './assets/styles/variables.scss';
 
 body {
+  padding-top: 100px; //для закрепления header всегда наверху
+
   @include customFont;
 
   max-width: 900px;
