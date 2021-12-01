@@ -21,10 +21,10 @@ const Header = () => {
             <button>Home</button>
           </Link>
           <Link to="/game">
-            <button>training</button>
+            <button>Training</button>
           </Link>
 
-          <button>Добавить слово</button>
+          <button>Add new word</button>
         </div>
       </div>
     </Router>

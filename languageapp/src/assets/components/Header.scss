@@ -1,9 +1,6 @@
-@import "../styles/variables.scss";
-
-
+@import '../styles/variables.scss';
 
 .header {
-
   @include customFont;
   display: flex;
   flex-direction: row;
@@ -29,7 +26,15 @@
 .header_buttons {
   display: flex;
   flex-direction: row;
-  // justify-content: flex-end
+  gap: 10px;
+  align-items: center;
+  // justify-content: flex-end;
+  button {
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(49, 9, 87);
+    background-color: $customLightTextColor;
+  }
 }
 
 .header_phrase {
@@ -37,5 +42,4 @@
   font-size: 14px;
   line-height: 15px;
   font-weight: bold;
-
 }

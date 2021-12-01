@@ -17,17 +17,12 @@ const App = () => {
         <Header />
         <Switch>
           <main className="main">
-            <Route exact path="/">
-              <Table />
-            </Route>
+            <Route exact path="/" component={Table}></Route>
 
-            <Route path="/game">
-              <CardsContainer />
-            </Route>
+            <Route path="/game" component={CardsContainer}></Route>
 
-            {/* <Route path="/">
-              <ErrorPage />
-            </Route> */}
+            {/* страница ошибки - без path */}
+            <Route component={ErrorPage}></Route>
 
             {/* вывод всех карточек
           {words.map((word, i) => (
