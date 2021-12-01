@@ -9,17 +9,25 @@ const CardsContainer = () => {
   const [selectedCardIndex, setselectedCardIndex] = useState(0);
 
   const handleClickNext = () => {
-    const newIndex = selectedCardIndex + 1;
-    if (newIndex < words.length) {
-      setselectedCardIndex(newIndex);
-    }
+    //вариант с конечной каруселью
+    // const newIndex = selectedCardIndex + 1;
+    // if (newIndex < words.length) {
+    //   setselectedCardIndex(newIndex);
+    // }
+
+    //вариант с бесконечной каруселью
+    setselectedCardIndex((selectedCardIndex + 1) % words.length);
   };
 
   const handleClickPrev = () => {
-    const newIndex = selectedCardIndex - 1;
-    if (newIndex >= 0) {
-      setselectedCardIndex(newIndex);
-    }
+    //вариант с конечной каруселью
+    // const newIndex = selectedCardIndex - 1;
+    // if (newIndex >= 0) {
+    //   setselectedCardIndex(newIndex);
+    // }
+
+    //вариант с бесконечной каруселью
+    setselectedCardIndex((selectedCardIndex - 1 + words.length) % words.length);
   };
 
   return (
@@ -27,7 +35,7 @@ const CardsContainer = () => {
       <div className="cardsContainer_cards">
         <ArrowPrev
           onClick={handleClickPrev}
-          disabled={selectedCardIndex === 0}
+          // disabled={selectedCardIndex === 0}
         />
         <WordCard
           key={words[selectedCardIndex].id}
@@ -37,7 +45,7 @@ const CardsContainer = () => {
         />
         <ArrowNext
           onClick={handleClickNext}
-          disabled={selectedCardIndex === words.length - 1}
+          // disabled={selectedCardIndex === words.length - 1}
         />
       </div>
       <div className="cardsContainer_count">
