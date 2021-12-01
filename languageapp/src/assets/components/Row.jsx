@@ -27,7 +27,7 @@ const TableRow = function (props) {
       {editMode ? (
         <td className="tableRow_actions">
           <ButtonSave onClick={handleClick} />
-          <ButtonCancel />
+          <ButtonCancel onClick={handleClick} />
         </td>
       ) : (
         <td className="tableRow_actions">

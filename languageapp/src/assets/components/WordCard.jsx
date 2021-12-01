@@ -15,13 +15,19 @@ const WordCard = props => {
       <div className="englishTranscription">{props.transcription}</div>
       {/* <div className="russianWord">{props.russian}</div> */}
       {/* условный рендеринг: кликнули на кнопку - появился перевод */}
-      <div className="checking">
-        {clicked ? (
-          <div className="russianWord">{props.russian}</div>
-        ) : (
-          <ButtonCheck onClick={handleClick} />
-        )}
-      </div>
+      {/* <div className="checking"> */}
+      {clicked ? (
+        <div className="checking">
+          <div className="russianWord">
+            {props.russian}
+            <div className="checking_btn" onClick={handleClick}>
+              Скрыть перевод
+            </div>
+          </div>
+        </div>
+      ) : (
+        <ButtonCheck onClick={handleClick} />
+      )}
     </div>
   );
 };

@@ -1,12 +1,11 @@
-@import "../../styles/variables.scss";
+@import '../../styles/variables.scss';
 
 .buttonCheck {
-// width: 80px;
-padding: 8px;
+  // width: 80px;
+  padding: 8px;
 
-border-radius: 5px;
-border: 1px solid black;
-font-size: 12px;
-cursor: pointer;
-
+  border-radius: 5px;
+  border: 1px solid rgb(49, 9, 87);
+  font-size: 12px;
+  cursor: pointer;
 }

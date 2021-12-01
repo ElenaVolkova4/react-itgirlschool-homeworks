@@ -1,0 +1,14 @@
+.arrow {
+  padding: 10px;
+  border: 1px solid #efb1ff;
+  color: #efb1ff;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.disabled {
+  border: 1px solid grey;
+  color: grey;
+  cursor: not-allowed;
+}
