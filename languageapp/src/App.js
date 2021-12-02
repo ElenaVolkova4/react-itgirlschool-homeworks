@@ -8,23 +8,22 @@ import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
 import ErrorPage from './assets/components/ErrorPage.jsx';
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 const App = () => {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <Switch>
-          <main className="main">
-            <Route exact path="/" component={Table}></Route>
+    <div className="App">
+      <Header />
+      <Switch>
+        <main className="main">
+          <Route exact path="/" component={Table}></Route>
 
-            <Route path="/game" component={CardsContainer}></Route>
+          <Route path="/game" component={CardsContainer}></Route>
 
-            {/* страница ошибки - без path */}
-            <Route component={ErrorPage}></Route>
+          {/* страница ошибки - без path */}
+          <Route component={ErrorPage}></Route>
 
-            {/* вывод всех карточек
+          {/* вывод всех карточек
           {words.map((word, i) => (
             <WordCard
               key={word.id}
@@ -34,8 +33,8 @@ const App = () => {
             />
           ))} */}
 
-            {/* по одной карточке */}
-            {/* <WordCard
+          {/* по одной карточке */}
+          {/* <WordCard
             key={words[0].id}
             english={words[0].english}
             transcription={words[0].transcription}
@@ -47,11 +46,10 @@ const App = () => {
             transcription={words[1].transcription}
             russian={words[1].russian}
           /> */}
-          </main>
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+        </main>
+      </Switch>
+      <Footer />
+    </div>
   );
 };
 export default App;
