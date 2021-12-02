@@ -17,7 +17,7 @@ const App = () => {
       <main className="main">
         <Switch>
           <Route exact path="/" component={Table}></Route>
-          <Route path="/game" component={CardsContainer}></Route>
+          <Route exact path="/game" component={CardsContainer}></Route>
           {/* страница ошибки - без path */}
           <Route component={ErrorPage}></Route>
 
