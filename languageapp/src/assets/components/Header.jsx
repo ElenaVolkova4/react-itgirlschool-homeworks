@@ -11,7 +11,6 @@ const Header = () => {
           <Link to="/">
             <img className="logo" src={logo} alt="Логотип приложения" />{' '}
           </Link>
-
           <p className="header_phrase">
             Чтобы попасть в Хогвартс - надо знать английский язык!
           </p>
@@ -23,7 +22,6 @@ const Header = () => {
           <Link to="/game">
             <div className="header_button">Training</div>
           </Link>
-
           <div className="header_button">Add new word</div>
         </div>
       </div>

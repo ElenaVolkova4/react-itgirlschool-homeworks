@@ -13,9 +13,8 @@
   @include customFont;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-
-  background: #7d69a9;
+  justify-content: space-evenly;
+  background: #473995;
 }
 
 .logo {
@@ -24,6 +23,7 @@
 }
 
 .header_logo {
+  width: 300px;
   display: flex;
   flex-direction: row;
   align-items: center;
