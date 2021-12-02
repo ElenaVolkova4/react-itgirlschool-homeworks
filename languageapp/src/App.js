@@ -14,8 +14,8 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Switch>
-        <main className="main">
+      <main className="main">
+        <Switch>
           <Route exact path="/" component={Table}></Route>
           <Route path="/game" component={CardsContainer}></Route>
           {/* страница ошибки - без path */}
@@ -44,8 +44,8 @@ const App = () => {
             transcription={words[1].transcription}
             russian={words[1].russian}
           /> */}
-        </main>
-      </Switch>
+        </Switch>
+      </main>
       <Footer />
     </div>
   );
