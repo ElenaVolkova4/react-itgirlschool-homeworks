@@ -9,13 +9,17 @@
 }
 
 .main {
-  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   /* для прижатия футера к низу */
+  flex: 1 1 auto;
 }
 
-.main_cards {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  flex-wrap: wrap;
-}
+// .main_cards {
+//   display: flex;
+//   flex-direction: row;
+//   gap: 5px;
+//   flex-wrap: wrap;
+// }

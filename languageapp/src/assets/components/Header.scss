@@ -1,18 +1,20 @@
-@import "../styles/variables.scss";
-
-
+@import '../styles/variables.scss';
 
 .header {
+  //для закрепления меню всегда наверху страницы
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
 
+  padding-top: 10px;
+  padding-bottom: 30px;
   @include customFont;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 40px; //работает?
-
-  padding-bottom: 40px;
-
-  // background: rgb(158, 137, 137);
+  justify-content: space-evenly;
+  background: #473995;
 }
 
 .logo {
@@ -21,6 +23,7 @@
 }
 
 .header_logo {
+  width: 300px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,7 +32,29 @@
 .header_buttons {
   display: flex;
   flex-direction: row;
-  // justify-content: flex-end
+  gap: 10px;
+  align-items: center;
+  // justify-content: flex-end;
+  .header_button {
+    padding: 8px;
+
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(49, 9, 87);
+    font-weight: bolder;
+    background-color: $customLightTextColor;
+
+    &:hover {
+      //наведение на кнопку
+      background: rgb(238, 205, 238);
+    }
+
+    &:active {
+      //нажатие на кнопку
+      outline: none;
+      box-shadow: 0 0 0 4px rgb(142, 107, 152, 0.75);
+    }
+  }
 }
 
 .header_phrase {
@@ -37,5 +62,4 @@
   font-size: 14px;
   line-height: 15px;
   font-weight: bold;
-
 }
