@@ -6,7 +6,8 @@ import ArrowNext from './ArrowNext';
 import ArrowPrev from './ArrowPrev';
 
 const CardsContainer = () => {
-  const [selectedCardIndex, setselectedCardIndex] = useState(0);
+  const [selectedCardIndex, setselectedCardIndex] = useState(0); //для карусели карточек
+  const [countedLearnedCard, setcountedLearnedCard] = useState(0); //для подсчета выученных слов в тренировке
 
   const handleClickNext = () => {
     //вариант с конечной каруселью
@@ -32,6 +33,9 @@ const CardsContainer = () => {
 
   return (
     <div className="cardsContainer">
+      <div className="cardsContainer_count">
+        Изучено слов за тренировку: {countedLearnedCard}
+      </div>
       <div className="cardsContainer_cards">
         <ArrowPrev
           onClick={handleClickPrev}
@@ -42,6 +46,7 @@ const CardsContainer = () => {
           english={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           russian={words[selectedCardIndex].russian}
+          learnedCard={() => setcountedLearnedCard(countedLearnedCard + 1)}
         />
         <ArrowNext
           onClick={handleClickNext}
