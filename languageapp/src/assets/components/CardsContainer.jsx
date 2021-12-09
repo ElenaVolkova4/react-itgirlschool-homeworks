@@ -56,12 +56,12 @@ const CardsContainer = () => {
           english={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           russian={words[selectedCardIndex].russian}
-          learnedCard={learnedCard} //не работает
-          notLearnedCard={notLearnedCard} //не работает
+          // learnedCard={learnedCard} //не работает
+          // notLearnedCard={notLearnedCard} //не работает
 
           //вот так внутри лучше не писать
-          // learnedCard={() => setcountedLearnedCard(countedLearnedCard + 1)}
-          // notLearnedCard={() => setcountedLearnedCard(countedLearnedCard - 1)}
+          learnedCard={() => setcountedLearnedCard(countedLearnedCard + 1)}
+          notLearnedCard={() => setcountedLearnedCard(countedLearnedCard - 1)}
         />
         <ArrowNext
           onClick={handleClickNext}

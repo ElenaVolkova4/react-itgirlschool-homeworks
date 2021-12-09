@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, forwardRef } from 'react';
 import './WordCard.scss';
 import ButtonCheck from './Buttons/Button_check.jsx';
 
@@ -23,7 +23,6 @@ const WordCard = props => {
       <div className="englishTranscription">{props.transcription}</div>
       {/* <div className="russianWord">{props.russian}</div> */}
       {/* условный рендеринг: кликнули на кнопку - появился перевод */}
-      {/* <div className="checking"> */}
       {clicked ? (
         <div className="checking">
           <div className="russianWord">{props.russian}</div>
