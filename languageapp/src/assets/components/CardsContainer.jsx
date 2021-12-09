@@ -47,6 +47,7 @@ const CardsContainer = () => {
           transcription={words[selectedCardIndex].transcription}
           russian={words[selectedCardIndex].russian}
           learnedCard={() => setcountedLearnedCard(countedLearnedCard + 1)}
+          notLearnedCard={() => setcountedLearnedCard(countedLearnedCard - 1)}
         />
         <ArrowNext
           onClick={handleClickNext}
