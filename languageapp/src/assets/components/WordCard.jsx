@@ -10,9 +10,9 @@ const WordCard = props => {
     showTranslate(!clicked);
     {
       if (!clicked) {
-        props.learnedCard();
+        props?.learnedCard();
       } else {
-        props.notLearnedCard();
+        props?.notLearnedCard();
       }
     }
   };

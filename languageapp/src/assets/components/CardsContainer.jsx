@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './CardsContainer.scss';
 import WordCard from './WordCard';
 import { words } from './dataWords';
@@ -29,6 +29,16 @@ const CardsContainer = () => {
 
     //вариант с бесконечной каруселью
     setselectedCardIndex((selectedCardIndex - 1 + words.length) % words.length);
+
+    //счетчик изученных слов (заворачиваем в хук useCallback, чтобы меньше перерендеривалось, его лучше использовать где большие расчеты)
+    const learnedCard = useCallback(
+      () => setcountedLearnedCard(countedLearnedCard + 1),
+      [countedLearnedCard],
+    );
+    const notLearnedCard = useCallback(
+      () => setcountedLearnedCard(countedLearnedCard - 1),
+      [countedLearnedCard],
+    );
   };
 
   return (
@@ -46,8 +56,12 @@ const CardsContainer = () => {
           english={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           russian={words[selectedCardIndex].russian}
-          learnedCard={() => setcountedLearnedCard(countedLearnedCard + 1)}
-          notLearnedCard={() => setcountedLearnedCard(countedLearnedCard - 1)}
+          learnedCard={learnedCard} //не работает
+          notLearnedCard={notLearnedCard} //не работает
+
+          //вот так внутри лучше не писать
+          // learnedCard={() => setcountedLearnedCard(countedLearnedCard + 1)}
+          // notLearnedCard={() => setcountedLearnedCard(countedLearnedCard - 1)}
         />
         <ArrowNext
           onClick={handleClickNext}
