@@ -29,17 +29,17 @@ const CardsContainer = () => {
 
     //вариант с бесконечной каруселью
     setselectedCardIndex((selectedCardIndex - 1 + words.length) % words.length);
-
-    //счетчик изученных слов (заворачиваем в хук useCallback, чтобы меньше перерендеривалось, его лучше использовать где большие расчеты)
-    const learnedCard = useCallback(
-      () => setcountedLearnedCard(countedLearnedCard + 1),
-      [countedLearnedCard],
-    );
-    const notLearnedCard = useCallback(
-      () => setcountedLearnedCard(countedLearnedCard - 1),
-      [countedLearnedCard],
-    );
   };
+
+  //счетчик изученных слов (заворачиваем в хук useCallback, чтобы меньше перерендеривалось, его лучше использовать где большие расчеты)
+  const learnedCard = useCallback(
+    () => setcountedLearnedCard(countedLearnedCard + 1),
+    [countedLearnedCard],
+  );
+  const notLearnedCard = useCallback(
+    () => setcountedLearnedCard(countedLearnedCard - 1),
+    [countedLearnedCard],
+  );
 
   return (
     <div className="cardsContainer">
