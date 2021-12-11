@@ -3,16 +3,17 @@ import './Button_check.scss';
 
 const ButtonCheck = props => {
   const buttonRef = useRef();
-  useEffect(() => buttonRef.current.focus(), []); //делаем фокус на кнопке при первой зарузке (только тег должен быть не div?)
+  useEffect(() => buttonRef.current.focus(), []); //делаем фокус на кнопке при первой зарузке
   return (
-    <button
+    <div
+      tabIndex="0" //добавлено свойство, чтобы .current.focus() срабатывал на div
       type="button"
       className="buttonCheck"
       onClick={props.onClick}
       ref={buttonRef}
     >
       Проверить
-    </button>
+    </div>
   );
 };
 
