@@ -19,7 +19,7 @@ const TableRow = function (props) {
   //   });
   // };
 
-  //кнопка сохранить
+  //кнопка сохранить    НЕ СРАБАТЫВАЕТ!!!!!
   const handleClickSave = () => {
     if (editModeEnglish === '') {
       alert('не заполено поле English');
