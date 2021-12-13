@@ -1,7 +1,7 @@
 import React from 'react';
 import './Table.scss';
 import TableHeader from './TableHeader';
-import TableRow from './Row';
+import TableRow from './TableRow';
 import { words } from './dataWords';
 
 const Table = () => {
