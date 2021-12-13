@@ -49,6 +49,7 @@ const CardsContainer = () => {
       <div className="cardsContainer_cards">
         <ArrowPrev
           onClick={handleClickPrev}
+
           // disabled={selectedCardIndex === 0}
         />
         <WordCard
