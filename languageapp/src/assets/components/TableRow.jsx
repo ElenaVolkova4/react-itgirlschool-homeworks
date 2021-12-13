@@ -7,7 +7,7 @@ import ButtonCancel from './Buttons/Button_cancel';
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
-  const [editModeEnglish, setEditModeEnglish] = useState(props.english);
+  const [editModeEnglish, setEditModeEnglish] = useState(props.english); //состояние поля input english
 
   const handleClick = () => setEditMode(!editMode);
 
@@ -32,7 +32,7 @@ const TableRow = function (props) {
         {editMode ? (
           <input
             defaultValue={props.english}
-            // onChange={handleChangeEnglish}
+            // onChange={handleChangeEnglish} НАДО ЛИ?
           />
         ) : (
           props.english
