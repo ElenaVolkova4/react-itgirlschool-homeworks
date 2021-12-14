@@ -7,23 +7,29 @@ import ButtonCancel from './Buttons/Button_cancel';
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
-  const [editModeEnglish, setEditModeEnglish] = useState(props.english); //состояние поля input english
+  const [rowData, setRowData] = useState({
+    //первоначальные состояния полей input
+    english: props.english,
+    transcription: props.transcription,
+    russian: props.russian,
+  });
 
-  const handleClick = () => setEditMode(!editMode);
+  const handleClick = () => setEditMode(!editMode); //по клику у строки поялвяется состояние редактируема
 
-  //изменение поля english - НАДО ЛИ?????????
-  // const handleChangeEnglish = e => {
-  //   console.log(editModeEnglish);
-  //   setEditModeEnglish({
-  //     editModeEnglish: e.target.value,
-  //   });
-  // };
+  //изменение состояния полей
+  const handleChange = e => {
+    setRowData({
+      ...rowData, //копируем объект с полями rowData
+      [e.target.name]: e.target.value, //изменяем value inputов на вводимые значения в зависимости от ключа name
+    });
+  };
 
-  //кнопка сохранить    НЕ СРАБАТЫВАЕТ!!!!!
+  //кнопка сохранить
   const handleClickSave = () => {
-    if (editModeEnglish === '') {
-      alert('не заполено поле English');
-    }
+    console.log(rowData);
+    // if (editModeEnglish === '') {
+    //   alert('не заполено поле English');
+    // }
   };
 
   return (
@@ -32,7 +38,8 @@ const TableRow = function (props) {
         {editMode ? (
           <input
             defaultValue={props.english}
-            // onChange={handleChangeEnglish} НАДО ЛИ?
+            name="english"
+            onChange={handleChange}
           />
         ) : (
           props.english
@@ -40,18 +47,33 @@ const TableRow = function (props) {
       </td>
       <td>
         {editMode ? (
-          <input defaultValue={props.transcription} />
+          <input
+            defaultValue={props.transcription}
+            name="transcription"
+            onChange={handleChange}
+          />
         ) : (
           props.transcription
         )}
       </td>
       <td>
-        {editMode ? <input defaultValue={props.russian} /> : props.russian}
+        {editMode ? (
+          <input
+            defaultValue={props.russian}
+            name="transcription"
+            onChange={handleChange}
+          />
+        ) : (
+          props.russian
+        )}
       </td>
 
       {editMode ? (
         <td className="tableRow_actions">
-          <ButtonSave onClick={handleClickSave} />
+          <ButtonSave
+            //прописать условия, что она неактивна если поля не заполнены
+            onClick={handleClickSave}
+          />
           <ButtonCancel onClick={handleClick} />
         </td>
       ) : (
