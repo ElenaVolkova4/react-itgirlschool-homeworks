@@ -10,3 +10,11 @@
     box-shadow: 0px 0px 5px 1px #483a97;
   }
 }
+
+.disabled_button {
+  background: #f5e1e1;
+  cursor: not-allowed;
+  // cursor: no-drop;
+
+  z-index: -1;
+}

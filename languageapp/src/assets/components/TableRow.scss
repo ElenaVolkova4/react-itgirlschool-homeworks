@@ -7,11 +7,24 @@
   gap: 5px;
   border: none;
 }
-input {
+// input {
+//   width: 100%;
+//   border: 1px solid #685096;
+//   border-radius: 5px;
+//   // background-color: $l;
+//   outline: none;
+//   text-align: left;
+// }
+
+.inputTableRow {
   width: 100%;
   border: 1px solid #685096;
   border-radius: 5px;
   // background-color: $l;
   outline: none;
   text-align: left;
+}
+
+.redInputTableRow {
+  border: 2px solid red;
 }

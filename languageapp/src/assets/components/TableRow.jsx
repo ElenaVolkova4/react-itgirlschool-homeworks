@@ -4,17 +4,23 @@ import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
+import classnames from 'classnames';
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
   const [rowData, setRowData] = useState({
-    //первоначальные состояния полей input
+    //первоначальные состояния полей input (из пропсов)
     english: props.english,
     transcription: props.transcription,
     russian: props.russian,
   });
 
-  const handleClick = () => setEditMode(!editMode); //по клику у строки поялвяется состояние редактируема
+  // стиль для полей input
+  let classNameInput = classnames('inputTableRow', {
+    // redInputTableRow: e.target.value === '', //класс красный: если поле пустое
+  });
+
+  const handleClick = () => setEditMode(!editMode); //по клику у строки появляется состояние редактируема
 
   //изменение состояния полей
   const handleChange = e => {
@@ -22,14 +28,20 @@ const TableRow = function (props) {
       ...rowData, //копируем объект с полями rowData
       [e.target.name]: e.target.value, //изменяем value inputов на вводимые значения в зависимости от ключа name
     });
+    console.log(e.target.value);
+
+    classNameInput = classnames('inputTableRow', {
+      redInputTableRow: e.target.value === '', //класс красный: если поле пустое
+    });
   };
 
   //кнопка сохранить
   const handleClickSave = () => {
-    console.log(rowData);
+    // console.log(rowData);
     // if (editModeEnglish === '') {
-    //   alert('не заполено поле English');
+    // console.log(rowData);
     // }
+    setEditMode(!editMode); //снова убирается режим редактирования
   };
 
   return (
@@ -37,6 +49,7 @@ const TableRow = function (props) {
       <td>
         {editMode ? (
           <input
+            className={classNameInput}
             defaultValue={props.english}
             name="english"
             onChange={handleChange}
@@ -48,6 +61,7 @@ const TableRow = function (props) {
       <td>
         {editMode ? (
           <input
+            className={classNameInput}
             defaultValue={props.transcription}
             name="transcription"
             onChange={handleChange}
@@ -59,8 +73,9 @@ const TableRow = function (props) {
       <td>
         {editMode ? (
           <input
+            className={classNameInput}
             defaultValue={props.russian}
-            name="transcription"
+            name="russian"
             onChange={handleChange}
           />
         ) : (
@@ -71,8 +86,11 @@ const TableRow = function (props) {
       {editMode ? (
         <td className="tableRow_actions">
           <ButtonSave
-            //прописать условия, что она неактивна если поля не заполнены
             onClick={handleClickSave}
+
+            //кнопка неактивна, если поля не заполнены
+          // disabled={???????}
+
           />
           <ButtonCancel onClick={handleClick} />
         </td>
