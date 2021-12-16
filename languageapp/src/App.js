@@ -8,6 +8,8 @@ import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
 import ErrorPage from './assets/components/ErrorPage.jsx';
 
+import Primer from './primer';
+
 import { Switch, Route, Link } from 'react-router-dom';
 
 const App = () => {
@@ -15,6 +17,7 @@ const App = () => {
     <div className="App">
       <Header />
       <main className="main">
+        <Primer />
         <Switch>
           <Route exact path="/" component={Table}></Route>
           <Route exact path="/game" component={CardsContainer}></Route>
