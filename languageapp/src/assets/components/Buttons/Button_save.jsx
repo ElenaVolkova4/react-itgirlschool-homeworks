@@ -3,7 +3,7 @@ import './Button_actions.scss';
 import './Button_edit.scss';
 
 const ButtonSave = props => {
-  const className = `buttonSave button_actions disabled_button
+  const className = `buttonSave button_actions
   ${props.disabled ? 'disabled_button' : ' '}
   `;
 
