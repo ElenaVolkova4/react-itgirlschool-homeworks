@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import './TableRow.scss';
 import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
-import classnames from 'classnames';
+
+import classnames from 'classnames'; //надо ли?
+
+// console.log(rowData.english); //вот так обращаемся к value inputов
+
+//от Вари, но не включена проверка на символы
+const getClassName = value =>
+  `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
+
+//условия валидации полей input
+const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
+const russianFormat = /^[а-яё-\s]+$/i; //поле english должно содержать только слова русскими буквами, включая дефис (а можно использовать флаг /i)
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
   const [rowData, setRowData] = useState({
-    //первоначальные состояния (текс) полей input (из пропсов)
+    //первоначальные состояния (текст) полей input (из пропсов)
     english: props.english,
     transcription: props.transcription,
     russian: props.russian,
@@ -17,35 +28,22 @@ const TableRow = function (props) {
 
   //валидация
 
-  //условия валидации полей input
-  const englishFormat = /^[a-zA-Z]+$/; //поле english должно содержать только англ буквы
-  const russianFormat = /^[а-яё]+$/i; //поле english должно содержать только русские буквы
-
-  //строка валидна?
-  const [rowValid, setRowValid] = useState(true);
-
-  const isRowValid = () => {
-    if (
-      // englishFormat.test(rowData.english) !== true; //НО!!!!! работает до первого совпадения
-      rowData.english.search(englishFormat) > -1 || //НО!!!!! тоже работает до первого совпадения
+  const isRowInValid = useMemo(() => {
+    // console.log(russianFormat.test(rowData.russian));
+    return (
+      rowData.english.search(englishFormat) === -1 ||
       russianFormat.test(rowData.russian) !== true ||
       rowData.english === '' ||
       rowData.transcription === '' ||
       rowData.russian === ''
-    ) {
-      setRowValid(!rowValid);
-    } else {
-      setRowValid(rowValid);
-    }
-  };
-  // console.log(rowData.english); //вот так обращаемся к value inputов
+    );
+  }, [rowData.russian, rowData.english, rowData.transcription]);
 
-  // стили для полей input (inputTableRow и если поле пустое - redInputTableRow)
-  //МОЖНО КАК-ТО ОБЪЕДИНИТЬ?
+  // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
   const classNameInputEnglish = classnames('', {
-    // redInputTableRow: !rowValid,
-    redInputTableRow:
-      rowData.english === '' || englishFormat.test(rowData.english) !== true,
+    redInputTableRow: isRowInValid,
+    // redInputTableRow:
+    //   rowData.english === '' || englishFormat.test(rowData.english) !== true,
   });
   const classNameInputTranscription = classnames('', {
     redInputTableRow: rowData.transcription === '',
@@ -63,12 +61,11 @@ const TableRow = function (props) {
       ...rowData, //копируем объект с полями rowData
       [e.target.name]: e.target.value.toLowerCase(), //изменяем value inputов на вводимые значения в зависимости от ключа name и маленькими буквами (toLowerCase)
     });
-    isRowValid(); //сюда валидацию?????? работает только с одним символом
   };
 
   //кнопка сохранить
   const handleClickSave = () => {
-    if (rowValid) {
+    if (!isRowInValid) {
       console.log(rowData);
     } else {
       alert(
@@ -86,36 +83,36 @@ const TableRow = function (props) {
             // className={classNameInputEnglish} тогда в classNameInputEnglish надо заменить ' ' на 'inputTableRow'
             //или вариант:
             className={`inputTableRow ${classNameInputEnglish}`}
-            defaultValue={props.english}
+            value={rowData.english}
             name="english"
             onChange={handleChange}
           />
         ) : (
-          props.english
+          rowData.english
         )}
       </td>
       <td>
         {editMode ? (
           <input
             className={`inputTableRow ${classNameInputTranscription}`}
-            defaultValue={props.transcription}
+            value={rowData.transcription}
             name="transcription"
             onChange={handleChange}
           />
         ) : (
-          props.transcription
+          rowData.transcription
         )}
       </td>
       <td>
         {editMode ? (
           <input
             className={`inputTableRow ${classNameInputRussian}`}
-            defaultValue={props.russian}
+            value={rowData.russian}
             name="russian"
             onChange={handleChange}
           />
         ) : (
-          props.russian
+          rowData.russian
         )}
       </td>
 
@@ -124,14 +121,12 @@ const TableRow = function (props) {
           <ButtonSave
             onClick={handleClickSave}
             //кнопка неактивна, если поля не заполнены
-            // disabled={!rowValid}
-            disabled={
-              // disabled={!rowValid}
-
-              classNameInputEnglish ||
-              classNameInputTranscription ||
-              classNameInputRussian
-            }
+            // disabled={
+            //   classNameInputEnglish ||
+            //   classNameInputTranscription ||
+            //   classNameInputRussian
+            // }
+            disabled={isRowInValid} //надо закомментить это, чтобы срабатывал alert
           />
           <ButtonCancel onClick={handleClick} />
         </td>

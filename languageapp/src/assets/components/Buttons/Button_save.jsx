@@ -8,12 +8,7 @@ const ButtonSave = props => {
   `;
 
   return (
-    <div
-      className={className}
-      // className="buttonSave button_actions"
-      onClick={props.onClick}
-      title="сохранить"
-    >
+    <div className={className} onClick={props.onClick} title="сохранить">
       &#9989;
     </div>
   );
