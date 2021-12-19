@@ -3,12 +3,12 @@ import './Button_actions.scss';
 import './Button_edit.scss';
 
 const ButtonSave = props => {
+  const className = `buttonSave button_actions
+  ${props.disabled ? 'disabled_button' : ' '}
+  `;
+
   return (
-    <div
-      className="buttonSave button_actions"
-      onClick={props.onClick}
-      title="сохранить"
-    >
+    <div className={className} onClick={props.onClick} title="сохранить">
       &#9989;
     </div>
   );
