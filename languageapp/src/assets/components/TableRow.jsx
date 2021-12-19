@@ -67,12 +67,13 @@ const TableRow = function (props) {
   const handleClickSave = () => {
     if (!isRowInValid) {
       console.log(rowData);
+      setEditMode(!editMode); //снова убирается режим редактирования
     } else {
       alert(
+        //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
         'Остались незаполненные поля или поля содержат недопустивые знаки!',
       );
     }
-    setEditMode(!editMode); //снова убирается режим редактирования
   };
 
   return (
@@ -120,13 +121,7 @@ const TableRow = function (props) {
         <td className="tableRow_actions">
           <ButtonSave
             onClick={handleClickSave}
-            //кнопка неактивна, если поля не заполнены
-            // disabled={
-            //   classNameInputEnglish ||
-            //   classNameInputTranscription ||
-            //   classNameInputRussian
-            // }
-            disabled={isRowInValid} //надо закомментить это, чтобы срабатывал alert
+            // disabled={isRowInValid} //надо закомментить это, чтобы срабатывал alert
           />
           <ButtonCancel onClick={handleClick} />
         </td>
@@ -141,3 +136,11 @@ const TableRow = function (props) {
 };
 
 export default TableRow;
+
+// вариант для написания классов для инпутов:
+// сделать отдельный метод для проверки на длину:
+// const isValidLength = value =>!!value.length;
+// И отдельный метод для проверки регулярки:
+// const areAllCharactersValid = (value, regExp) => rvalue.search(regExp) !== -1
+// И потом по ним получать класс:
+// `inputTableRow ${!isValidLength(rowData.english) || !areAllCharactersValid(rowData.english, englishFormat) ? 'redInputTableRow' : ''}`

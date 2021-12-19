@@ -21,35 +21,32 @@ import React, { useState } from 'react';
 const Primer = () => {
   const [formData, setFormData] = useState({
     firstName: '',
-    lastName: '',
     email: '',
-    password: '',
+    rememberMe: false,
   });
+
+  const { firstName, email, rememberMe } = formData;
 
   const updateFormData = event =>
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.checked,
     });
-
-  const { firstName, lastName, email, password } = formData;
 
   return (
     <form>
+      <input
+        type="checkbox"
+        // checked={formData.rememberMe}
+        onChange={updateFormData}
+        name="rememberMe"
+      />
       <input
         value={firstName}
         onChange={e => updateFormData(e)}
         placeholder="First name"
         type="text"
         name="firstName"
-        required
-      />
-      <input
-        value={lastName}
-        onChange={e => updateFormData(e)}
-        placeholder="Last name"
-        type="text"
-        name="lastName"
         required
       />
       <input
@@ -60,15 +57,6 @@ const Primer = () => {
         name="email"
         required
       />
-      <input
-        value={password}
-        onChange={e => updateFormData(e)}
-        placeholder="Password"
-        type="password"
-        name="password"
-        required
-      />
-
       <button type="submit">Submit</button>
     </form>
   );
