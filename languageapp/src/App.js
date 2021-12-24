@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './App.scss';
 import Header from './assets/components/Header.jsx';
 import WordCard from './assets/components/WordCard.jsx';
@@ -7,8 +7,7 @@ import CardsContainer from './assets/components/CardsContainer.jsx';
 import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
 import ErrorPage from './assets/components/ErrorPage.jsx';
-
-import Primer from './primer';
+import Loader from './assets/components/Loader';
 
 import { Switch, Route, Link } from 'react-router-dom';
 
@@ -16,8 +15,8 @@ const App = () => {
   return (
     <div className="App">
       <Header />
+      <Loader></Loader>
       <main className="main">
-        <Primer />
         <Switch>
           <Route exact path="/" component={Table}></Route>
           <Route exact path="/game" component={CardsContainer}></Route>

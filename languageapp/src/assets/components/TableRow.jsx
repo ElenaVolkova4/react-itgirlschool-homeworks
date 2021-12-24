@@ -1,17 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import './TableRow.scss';
 import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
-
-import classnames from 'classnames'; //надо ли?
+import classnames from 'classnames';
+import WordsContex from './context/WordsContex';
 
 // console.log(rowData.english); //вот так обращаемся к value inputов
-
-//от Вари, но не включена проверка на символы
-const getClassName = value =>
-  `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
 
 //условия валидации полей input
 const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
@@ -19,12 +15,16 @@ const russianFormat = /^[а-яё-\s]+$/i; //поле english должно сод
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
-  const [rowData, setRowData] = useState({
-    //первоначальные состояния (текст) полей input (из пропсов)
-    english: props.english,
-    transcription: props.transcription,
-    russian: props.russian,
-  });
+
+  //если данные берутся из пропсов (из файла dataWords)
+  // const [rowData, setRowData] = useState({
+  //   //первоначальные состояния (текст) полей input (из пропсов)
+  //   english: props.english,
+  //   transcription: props.transcription,
+  //   russian: props.russian,
+  // });
+
+  const [rowData, setRowData] = useContext(WordsContex);
 
   //валидация
 
@@ -71,7 +71,7 @@ const TableRow = function (props) {
     } else {
       alert(
         //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
-        'Остались незаполненные поля или поля содержат недопустивые знаки!',
+        'Остались незаполненные поля или поля содержат недопустимые знаки!',
       );
     }
   };
@@ -136,6 +136,10 @@ const TableRow = function (props) {
 };
 
 export default TableRow;
+
+//от Вари, но не включена проверка на символы
+// const getClassName = value =>
+//   `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
 
 // вариант для написания классов для инпутов:
 // сделать отдельный метод для проверки на длину:

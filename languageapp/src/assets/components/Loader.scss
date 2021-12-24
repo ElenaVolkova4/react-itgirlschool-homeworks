@@ -1,0 +1,171 @@
+//variables
+$bg-color: #fff; //container background-color;
+$accent-font-color: #fd5200; //accent font color;
+$spinner-dimensions: 50px; //width and height of spinner block
+$spinner-1-bg: #47a8bd; //spinner-1 background-color
+$spinner-2-bg: #fe4e00; //spinner-4 background-color
+$spinner-3-bg: #0cca4a; //spinner-3 background-color
+$spinner-4-bg: #f51aa4; //spinner-2 background-color
+$spinner-5-bg: #ffe314; //spinner-5 background-color
+
+//mixins
+
+//position absolute mixin
+@mixin position-absolute($top: null, $left: null, $right: null, $bottom: null) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+/* spinner style */
+.spinner-eff {
+  position: relative;
+  width: $spinner-dimensions;
+  height: $spinner-dimensions;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+  }
+
+  .spinner-bar {
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+    }
+  }
+}
+
+/* spinner-1 styles */
+.spinner-eff.spinner-eff-1 {
+  @keyframes rotation-top {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+
+    20% {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+
+    80% {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes rotation-right {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+
+    20% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+
+    40% {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+
+    80% {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes rotation-bottom {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+
+    40% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+
+    60% {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+
+    80% {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes rotation-left {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+
+    60% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+
+    80% {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  .bar {
+    width: 0;
+    height: 0;
+    border: $spinner-dimensions/2 solid transparent;
+    @include position-absolute($top: 0, $left: 0);
+    transform: rotate(0deg);
+    opacity: 0.5;
+
+    &-top {
+      border-top: $spinner-dimensions/2 solid $spinner-1-bg;
+      animation: rotation-top 3.6s linear 0s infinite;
+    }
+
+    &-right {
+      border-right: $spinner-dimensions/2 solid $spinner-1-bg;
+      animation: rotation-right 3.6s linear 0s infinite;
+    }
+
+    &-bottom {
+      border-bottom: $spinner-dimensions/2 solid $spinner-1-bg;
+      animation: rotation-bottom 3.6s linear 0s infinite;
+    }
+
+    &-left {
+      border-left: $spinner-dimensions/2 solid $spinner-1-bg;
+      animation: rotation-left 3.6s linear 0s infinite;
+    }
+  }
+}
