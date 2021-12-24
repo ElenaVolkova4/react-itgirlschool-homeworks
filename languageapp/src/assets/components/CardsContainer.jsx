@@ -1,14 +1,21 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import './CardsContainer.scss';
 import WordCard from './WordCard';
-import { words } from './dataWords';
+// import { words } from './dataWords';
 import ArrowNext from './ArrowNext';
 import ArrowPrev from './ArrowPrev';
+import { WordsContex } from './context/WordsContex';
+import Loader from './Loader';
 
 const CardsContainer = () => {
+  //достаем слова с сервера
+  const { words, isWordsLoading } = useContext(WordsContex);
+  console.log(words);
+
   const [selectedCardIndex, setselectedCardIndex] = useState(0); //для карусели карточек
   const [countedLearnedCard, setcountedLearnedCard] = useState(0); //для подсчета выученных слов в тренировке
 
+  //достаем слова с сервера
   const handleClickNext = () => {
     //вариант с конечной каруселью
     // const newIndex = selectedCardIndex + 1;
@@ -40,6 +47,8 @@ const CardsContainer = () => {
     () => setcountedLearnedCard(countedLearnedCard - 1),
     [countedLearnedCard],
   );
+
+  if (isWordsLoading) return <Loader />;
 
   return (
     <div className="cardsContainer">

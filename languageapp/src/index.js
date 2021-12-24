@@ -5,15 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
-import WordsContexProvider from './assets/components/context/WordsContex';
+import { WordsContexProvider } from './assets/components/context/WordsContex.js';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <WordsContexProvider> */}
-      {/* контекст, содержащий слова */}
-      <App />
-      {/* </WordsContexProvider> */}
+      <WordsContexProvider>
+        {/* контекст, содержащий слова */}
+        <App />
+      </WordsContexProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),

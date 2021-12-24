@@ -5,7 +5,6 @@ import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
 import classnames from 'classnames';
-import WordsContex from './context/WordsContex';
 
 // console.log(rowData.english); //вот так обращаемся к value inputов
 
@@ -16,15 +15,13 @@ const russianFormat = /^[а-яё-\s]+$/i; //поле english должно сод
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
 
-  //если данные берутся из пропсов (из файла dataWords)
-  // const [rowData, setRowData] = useState({
-  //   //первоначальные состояния (текст) полей input (из пропсов)
-  //   english: props.english,
-  //   transcription: props.transcription,
-  //   russian: props.russian,
-  // });
-
-  const [rowData, setRowData] = useContext(WordsContex);
+  const [rowData, setRowData] = useState({
+    //первоначальные состояния (текст) полей input (из пропсов)
+    english: props.english,
+    transcription: props.transcription,
+    russian: props.russian,
+    id: props.id,
+  });
 
   //валидация
 
@@ -37,7 +34,7 @@ const TableRow = function (props) {
       rowData.transcription === '' ||
       rowData.russian === ''
     );
-  }, [rowData.russian, rowData.english, rowData.transcription]);
+  }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
   const classNameInputEnglish = classnames('', {
@@ -63,10 +60,49 @@ const TableRow = function (props) {
     });
   };
 
+  //параметры слова
+  const word = {
+    english: rowData.english,
+    transcription: rowData.transcription,
+    russian: rowData.russian,
+    id: rowData.id,
+  };
+
+  //функция сохранения слова
+  const saveChanges = () => {
+    console.log(rowData.id);
+    console.log(word);
+    // fetch(`/api/words/${rowData.id}/update`, {
+    fetch('/api/words/10880/update', {
+      method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+      body: JSON.stringify(word),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+      },
+    })
+      .then(response => response.json())
+      .then(word => console.log(word))
+      .catch(error => console.log(error));
+  };
+
+  //функция удаления слова
+  const deleteWord = () => {
+    fetch(`/api/words/${rowData.id}/delete`, {
+      method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+      body: JSON.stringify(word),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+      },
+    })
+      .then(response => response.json())
+      .then(word => console.log(word))
+      .catch(error => console.log(error));
+  };
+
   //кнопка сохранить
   const handleClickSave = () => {
     if (!isRowInValid) {
-      console.log(rowData);
+      saveChanges();
       setEditMode(!editMode); //снова убирается режим редактирования
     } else {
       alert(
@@ -128,7 +164,7 @@ const TableRow = function (props) {
       ) : (
         <td className="tableRow_actions">
           <ButtonEdit onClick={handleClick} />
-          <ButtonDelete />
+          <ButtonDelete onClick={deleteWord} />
         </td>
       )}
     </tr>
