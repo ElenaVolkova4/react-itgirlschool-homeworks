@@ -4,12 +4,12 @@ import WordCard from './WordCard';
 // import { words } from './dataWords';
 import ArrowNext from './ArrowNext';
 import ArrowPrev from './ArrowPrev';
-import { WordsContex } from './context/WordsContex';
+import { WordsContext } from '../context/WordsContext';
 import Loader from './Loader';
 
 const CardsContainer = () => {
   //достаем слова с сервера
-  const { words, isWordsLoading } = useContext(WordsContex);
+  const { words, isWordsLoading } = useContext(WordsContext);
   console.log(words);
 
   const [selectedCardIndex, setselectedCardIndex] = useState(0); //для карусели карточек
@@ -48,7 +48,7 @@ const CardsContainer = () => {
     [countedLearnedCard],
   );
 
-  if (isWordsLoading) return <Loader />;
+  if (isWordsLoading || !words.length) return <Loader />;
 
   return (
     <div className="cardsContainer">
@@ -62,10 +62,10 @@ const CardsContainer = () => {
           // disabled={selectedCardIndex === 0}
         />
         <WordCard
-          key={words[selectedCardIndex].id}
-          english={words[selectedCardIndex].english}
-          transcription={words[selectedCardIndex].transcription}
-          russian={words[selectedCardIndex].russian}
+          key={words[selectedCardIndex]?.id}
+          english={words[selectedCardIndex]?.english}
+          transcription={words[selectedCardIndex]?.transcription}
+          russian={words[selectedCardIndex]?.russian}
           learnedCard={learnedCard} //не работает
           notLearnedCard={notLearnedCard} //не работает
 

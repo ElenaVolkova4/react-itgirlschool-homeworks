@@ -10,6 +10,7 @@ import ErrorPage from './assets/components/ErrorPage.jsx';
 import NewWord from './assets/components/NewWord.jsx';
 
 import Loader from './assets/components/Loader';
+import ServerError from './assets/components/ServerError';
 
 import { Switch, Route, Link } from 'react-router-dom';
 

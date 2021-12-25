@@ -5,6 +5,7 @@ import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
 import classnames from 'classnames';
+import { WordsContext } from '../context/WordsContext';
 
 // console.log(rowData.english); //вот так обращаемся к value inputов
 
@@ -14,6 +15,7 @@ const russianFormat = /^[а-яё-\s]+$/i; //поле english должно сод
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
+  const { updateData } = useContext(WordsContext); //достаем функцию перерендера
 
   const [rowData, setRowData] = useState({
     //первоначальные состояния (текст) полей input (из пропсов)
@@ -26,7 +28,6 @@ const TableRow = function (props) {
   //валидация
 
   const isRowInValid = useMemo(() => {
-    // console.log(russianFormat.test(rowData.russian));
     return (
       rowData.english.search(englishFormat) === -1 ||
       russianFormat.test(rowData.russian) !== true ||
@@ -38,9 +39,8 @@ const TableRow = function (props) {
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
   const classNameInputEnglish = classnames('', {
-    redInputTableRow: isRowInValid,
-    // redInputTableRow:
-    //   rowData.english === '' || englishFormat.test(rowData.english) !== true,
+    redInputTableRow:
+      rowData.english === '' || englishFormat.test(rowData.english) !== true,
   });
   const classNameInputTranscription = classnames('', {
     redInputTableRow: rowData.transcription === '',
@@ -60,43 +60,34 @@ const TableRow = function (props) {
     });
   };
 
-  //параметры слова
-  const word = {
-    english: rowData.english,
-    transcription: rowData.transcription,
-    russian: rowData.russian,
-    id: rowData.id,
-  };
-
-  //функция сохранения слова
+  //функция сохранения изменений слова НЕ РАБОТАЕТ????
   const saveChanges = () => {
-    console.log(rowData.id);
-    console.log(word);
-    // fetch(`/api/words/${rowData.id}/update`, {
-    fetch('/api/words/10880/update', {
+    fetch(`/api/words/${rowData.id}/update`, {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
-      body: JSON.stringify(word),
+      body: JSON.stringify(rowData),
       headers: {
         'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
       },
     })
       .then(response => response.json())
-      .then(word => console.log(word))
+      .then(rowData => console.log(rowData))
       .catch(error => console.log(error));
+    updateData();
   };
 
   //функция удаления слова
   const deleteWord = () => {
     fetch(`/api/words/${rowData.id}/delete`, {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
-      body: JSON.stringify(word),
+      body: JSON.stringify(rowData),
       headers: {
         'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
       },
     })
       .then(response => response.json())
-      .then(word => console.log(word))
+      .then(rowData => console.log(rowData))
       .catch(error => console.log(error));
+    updateData();
   };
 
   //кнопка сохранить
@@ -106,7 +97,7 @@ const TableRow = function (props) {
       setEditMode(!editMode); //снова убирается режим редактирования
     } else {
       alert(
-        //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
+        //срабатывает, если закоментить в конпке // disabled={isRowInValid}
         'Остались незаполненные поля или поля содержат недопустимые знаки!',
       );
     }

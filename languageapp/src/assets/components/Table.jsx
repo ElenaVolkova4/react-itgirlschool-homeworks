@@ -3,14 +3,14 @@ import './Table.scss';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 // import { words } from './dataWords'; //если слова из файла
-import { WordsContex } from './context/WordsContex';
+import { WordsContext } from '../context/WordsContext';
 import Loader from './Loader';
 
 const Table = () => {
   //достаем слова с сервера
-  const { words, isWordsLoading } = useContext(WordsContex);
+  const { words, isWordsLoading, updateData } = useContext(WordsContext);
   console.log(words);
-  if (isWordsLoading) return <Loader />;
+  if (isWordsLoading || !words.length) return <Loader />;
   return (
     <div className="main_table">
       <table className="table">

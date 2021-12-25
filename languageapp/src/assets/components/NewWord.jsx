@@ -1,7 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import './NewWord.scss';
 import classnames from 'classnames';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { WordsContext } from '../context/WordsContext';
+import ServerError from './ServerError';
 
 //условия валидации полей input
 const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
@@ -14,7 +17,9 @@ const NewWord = () => {
     transcription: '',
     russian: '',
   });
+  const { updateData } = useContext(WordsContext); //достаем функцию перерендера
 
+  const history = useHistory(); // для возвращения пользователя к таблице после добавления слова
   //валидация
   const isInputsInValid = useMemo(() => {
     return (
@@ -48,26 +53,23 @@ const NewWord = () => {
   };
 
   //метод отправления нового слова на сервер
-  //формируем объект с теми параметрами, которые хотим передать
-  const word = {
-    english: newData.english,
-    transcription: newData.transcription,
-    russian: newData.russian,
-  };
-  //функция отправления слова на сервер
   const sentWord = () => {
-    console.log(word);
+    console.log(newData);
     fetch('/api/words/add', {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
-      body: JSON.stringify(word),
+      body: JSON.stringify(newData),
       headers: {
         'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
       },
     })
       .then(response => response.json())
-      .then(word => console.log(word))
-      .catch(error => console.log(error));
-    <Link to="/"></Link>;
+      .then(newData => console.log(newData))
+      .catch(error => {
+        console.log(error);
+        <ServerError />;
+      });
+    history.push('/'); //после добавления слова возвращает пользователя к таблице
+    updateData();
   };
 
   return (
@@ -94,7 +96,11 @@ const NewWord = () => {
         name="russian"
         onChange={handleChange}
       />
-      <button className="buttonCheck" onClick={sentWord}>
+      <button
+        className="buttonCheck"
+        onClick={sentWord}
+        disabled={isInputsInValid}
+      >
         Сохранить
       </button>
     </div>
