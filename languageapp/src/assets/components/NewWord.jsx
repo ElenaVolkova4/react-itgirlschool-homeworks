@@ -17,7 +17,7 @@ const NewWord = () => {
     transcription: '',
     russian: '',
   });
-  const { updateData, error } = useContext(WordsContext); //достаем функцию перерендера
+  const { updateData, error, setError } = useContext(WordsContext); //достаем функцию перерендера
 
   const history = useHistory(); // для возвращения пользователя к таблице после добавления слова
   //валидация
@@ -54,7 +54,7 @@ const NewWord = () => {
 
   //метод отправления нового слова на сервер
   const sentWord = () => {
-    console.log(newData);
+    setError(false);
     fetch('/api/words/add', {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(newData),
@@ -70,9 +70,11 @@ const NewWord = () => {
       })
       .catch(error => {
         console.log(error);
-        // <ServerError />;
+        setisWordsLoading(false);
+        setError(true);
       });
   };
+
   if (error) return <ServerError />;
 
   return (

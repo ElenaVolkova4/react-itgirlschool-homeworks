@@ -9,10 +9,8 @@ import ServerError from './ServerError';
 
 const Table = () => {
   //достаем слова с сервера
-  const { words, isWordsLoading, error } = useContext(WordsContext);
-  console.log(words);
+  const { words, isWordsLoading } = useContext(WordsContext);
   if (isWordsLoading || !words.length) return <Loader />;
-  // if (error) return <ServerError />;
 
   return (
     <div className="main_table">

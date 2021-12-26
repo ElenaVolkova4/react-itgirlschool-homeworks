@@ -10,7 +10,7 @@ const WordsContextProvider = props => {
 
   //создание функции для перерендера
   const updateData = () => {
-    setisWordsLoading(true);
+    setError(false);
     fetch('/api/words')
       .then(response => response.json())
       .then(words => {
@@ -19,6 +19,7 @@ const WordsContextProvider = props => {
       })
       .catch(error => {
         console.log(error);
+        setisWordsLoading(false);
         setError(true);
       });
   };

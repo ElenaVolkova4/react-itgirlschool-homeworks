@@ -10,7 +10,6 @@ import Loader from './Loader';
 const CardsContainer = () => {
   //достаем слова с сервера
   const { words, isWordsLoading } = useContext(WordsContext);
-  console.log(words);
 
   const [selectedCardIndex, setselectedCardIndex] = useState(0); //для карусели карточек
   const [countedLearnedCard, setcountedLearnedCard] = useState(0); //для подсчета выученных слов в тренировке
