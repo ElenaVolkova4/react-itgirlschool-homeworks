@@ -17,7 +17,7 @@ const NewWord = () => {
     transcription: '',
     russian: '',
   });
-  const { updateData } = useContext(WordsContext); //достаем функцию перерендера
+  const { updateData, error } = useContext(WordsContext); //достаем функцию перерендера
 
   const history = useHistory(); // для возвращения пользователя к таблице после добавления слова
   //валидация
@@ -63,14 +63,17 @@ const NewWord = () => {
       },
     })
       .then(response => response.json())
-      .then(newData => console.log(newData))
+      .then(newData => {
+        console.log(newData);
+        history.push('/'); //после добавления слова возвращает пользователя к таблице
+        updateData();
+      })
       .catch(error => {
         console.log(error);
-        <ServerError />;
+        // <ServerError />;
       });
-    history.push('/'); //после добавления слова возвращает пользователя к таблице
-    updateData();
   };
+  if (error) return <ServerError />;
 
   return (
     <div className="newWord">

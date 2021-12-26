@@ -5,12 +5,15 @@ import TableRow from './TableRow';
 // import { words } from './dataWords'; //если слова из файла
 import { WordsContext } from '../context/WordsContext';
 import Loader from './Loader';
+import ServerError from './ServerError';
 
 const Table = () => {
   //достаем слова с сервера
-  const { words, isWordsLoading, updateData } = useContext(WordsContext);
+  const { words, isWordsLoading, error } = useContext(WordsContext);
   console.log(words);
   if (isWordsLoading || !words.length) return <Loader />;
+  // if (error) return <ServerError />;
+
   return (
     <div className="main_table">
       <table className="table">

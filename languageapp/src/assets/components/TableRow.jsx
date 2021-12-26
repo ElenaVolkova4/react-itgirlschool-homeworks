@@ -6,6 +6,7 @@ import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
 import classnames from 'classnames';
 import { WordsContext } from '../context/WordsContext';
+import ServerError from './ServerError';
 
 // console.log(rowData.english); //вот так обращаемся к value inputов
 
@@ -15,7 +16,7 @@ const russianFormat = /^[а-яё-\s]+$/i; //поле english должно сод
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
-  const { updateData } = useContext(WordsContext); //достаем функцию перерендера
+  const { updateData, error } = useContext(WordsContext); //достаем функцию перерендера
 
   const [rowData, setRowData] = useState({
     //первоначальные состояния (текст) полей input (из пропсов)
@@ -102,6 +103,7 @@ const TableRow = function (props) {
       );
     }
   };
+  if (error) return <ServerError />;
 
   return (
     <tr className="tableRow">
