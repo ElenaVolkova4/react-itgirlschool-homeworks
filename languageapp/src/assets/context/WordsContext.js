@@ -11,6 +11,7 @@ const WordsContextProvider = props => {
   //создание функции для перерендера
   const updateData = () => {
     setError(false);
+    setisWordsLoading(true);
     fetch('/api/words')
       .then(response => response.json())
       .then(words => {

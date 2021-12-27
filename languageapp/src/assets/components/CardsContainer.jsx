@@ -6,10 +6,11 @@ import ArrowNext from './ArrowNext';
 import ArrowPrev from './ArrowPrev';
 import { WordsContext } from '../context/WordsContext';
 import Loader from './Loader';
+import ServerError from './ServerError';
 
 const CardsContainer = () => {
   //достаем слова с сервера
-  const { words, isWordsLoading } = useContext(WordsContext);
+  const { words, isWordsLoading, error } = useContext(WordsContext);
 
   const [selectedCardIndex, setselectedCardIndex] = useState(0); //для карусели карточек
   const [countedLearnedCard, setcountedLearnedCard] = useState(0); //для подсчета выученных слов в тренировке
@@ -47,6 +48,7 @@ const CardsContainer = () => {
     [countedLearnedCard],
   );
 
+  if (error) return <ServerError />;
   if (isWordsLoading || !words.length) return <Loader />;
 
   return (

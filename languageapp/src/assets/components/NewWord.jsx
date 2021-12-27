@@ -21,6 +21,14 @@ const NewWord = () => {
 
   const history = useHistory(); // для возвращения пользователя к таблице после добавления слова
   //валидация
+
+  //первоначальное состояние инпутов, когда нет ошибок (для валидации в handleChange)
+  const [errorsIntuts, setErrorsIntuts] = useState({
+    englishInput: false,
+    transcriptionInput: false,
+    russianInput: false,
+  });
+
   const isInputsInValid = useMemo(() => {
     return (
       newData.english.search(englishFormat) === -1 ||
@@ -33,28 +41,45 @@ const NewWord = () => {
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
   const classNameInputEnglish = classnames('', {
-    redInputTableRow:
-      newData.english === '' || englishFormat.test(newData.english) !== true,
+    redInputTableRow: errorsIntuts.english === true,
+    // или так
+    // newData.english === '' || englishFormat.test(newData.english) !== true,
   });
   const classNameInputTranscription = classnames('', {
-    redInputTableRow: newData.transcription === '',
+    redInputTableRow: errorsIntuts.transcription === true,
+    // или так
+    // newData.transcription === '',
   });
   const classNameInputRussian = classnames('', {
-    redInputTableRow:
-      newData.russian === '' || russianFormat.test(newData.russian) !== true,
+    redInputTableRow: errorsIntuts.russian === true,
+    // или так
+    // newData.russian === '' || russianFormat.test(newData.russian) !== true,
   });
 
   //ф-ция, чтобы можно было заность в input текст
   const handleChange = e => {
+    console.log(e.target.value);
     setnewData({
-      ...newData, //копируем объект с полями rowData
+      ...newData, //копируем объект с полями newData
       [e.target.name]: e.target.value.toLowerCase(), //изменяем value inputов на вводимые значения в зависимости от ключа name и маленькими буквами (toLowerCase)
+    });
+    //валидация, срабатывающая при первом вводе в поле (поэтому она в handleChange)
+    setErrorsIntuts({
+      ...errorsIntuts,
+      english:
+        newData.english === '' || englishFormat.test(newData.english) !== true
+          ? true
+          : false,
+      transcription: newData.transcription === '' ? true : false,
+      russian:
+        newData.russian === '' || russianFormat.test(newData.russian) !== true
+          ? true
+          : false,
     });
   };
 
   //метод отправления нового слова на сервер
   const sentWord = () => {
-    setError(false);
     fetch('/api/words/add', {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(newData),
