@@ -41,38 +41,48 @@ const NewWord = () => {
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
   const classNameInputEnglish = classnames('', {
-    redInputTableRow: errorsIntuts.english === true,
+    redInputTableRow: errorsIntuts.english, //=true
     // или так
     // newData.english === '' || englishFormat.test(newData.english) !== true,
   });
   const classNameInputTranscription = classnames('', {
-    redInputTableRow: errorsIntuts.transcription === true,
+    redInputTableRow: errorsIntuts.transcription, //=true
     // или так
     // newData.transcription === '',
   });
   const classNameInputRussian = classnames('', {
-    redInputTableRow: errorsIntuts.russian === true,
+    redInputTableRow: errorsIntuts.russian, //=true
     // или так
     // newData.russian === '' || russianFormat.test(newData.russian) !== true,
   });
 
   //ф-ция, чтобы можно было заность в input текст
   const handleChange = e => {
-    console.log(e.target.value);
     setnewData({
       ...newData, //копируем объект с полями newData
       [e.target.name]: e.target.value.toLowerCase(), //изменяем value inputов на вводимые значения в зависимости от ключа name и маленькими буквами (toLowerCase)
     });
     //валидация, срабатывающая при первом вводе в поле (поэтому она в handleChange)
+    // if (e.target.name === english) {
+    //   setErrorsIntuts({
+    //     ...errorsIntuts,
+    //     english:
+    //       e.target.value === '' || englishFormat.test(e.target.value) !== true
+    //         ? true
+    //         : false,
+    //   });
+    // }
+
     setErrorsIntuts({
       ...errorsIntuts,
       english:
-        newData.english === '' || englishFormat.test(newData.english) !== true
+        e.target.value === '' || englishFormat.test(e.target.value) !== true
           ? true
           : false,
-      transcription: newData.transcription === '' ? true : false,
+      transcription: e.target.value.transcription === '' ? true : false,
       russian:
-        newData.russian === '' || russianFormat.test(newData.russian) !== true
+        e.target.value.russian === '' ||
+        russianFormat.test(newData.russian) !== true
           ? true
           : false,
     });
