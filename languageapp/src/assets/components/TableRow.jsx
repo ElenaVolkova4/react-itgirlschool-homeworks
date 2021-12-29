@@ -63,7 +63,9 @@ const TableRow = function (props) {
 
   //функция сохранения изменений слова НЕ РАБОТАЕТ????
   const saveChanges = () => {
+    setisWordsLoading(true);
     setError(false);
+
     fetch(`/api/words/${rowData.id}/update`, {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(rowData),
@@ -85,6 +87,7 @@ const TableRow = function (props) {
 
   //функция удаления слова
   const deleteWord = () => {
+    setisWordsLoading(true);
     setError(false);
     fetch(`/api/words/${rowData.id}/delete`, {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
