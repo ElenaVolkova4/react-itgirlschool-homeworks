@@ -17,12 +17,15 @@
 // }
 
 .inputTableRow {
-  width: 100%;
+  // width: 100%;
+  width: 100px;
   border: 1px solid #685096;
   border-radius: 5px;
   // background-color: $l;
   outline: none;
   text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 
 .redInputTableRow {

@@ -1,0 +1,16 @@
+@import '../styles/variables.scss';
+
+.newWord {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  gap: 5px;
+  border: 1px solid $customLightTextColor;
+  border-radius: 5px;
+  color: $customLightTextColor;
+}
+.newWord-title {
+  text-align: center;
+  font-size: 20px;
+  color: $customLightTextColor;
+}

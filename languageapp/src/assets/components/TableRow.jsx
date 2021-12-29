@@ -4,14 +4,10 @@ import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
-
+import ServerError from './ServerError';
 import classnames from 'classnames'; //надо ли?
 
 // console.log(rowData.english); //вот так обращаемся к value inputов
-
-//от Вари, но не включена проверка на символы
-const getClassName = value =>
-  `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
 
 //условия валидации полей input
 const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
@@ -24,12 +20,12 @@ const TableRow = function (props) {
     english: props.english,
     transcription: props.transcription,
     russian: props.russian,
+    id: props.id,
   });
 
   //валидация
 
   const isRowInValid = useMemo(() => {
-    // console.log(russianFormat.test(rowData.russian));
     return (
       rowData.english.search(englishFormat) === -1 ||
       russianFormat.test(rowData.russian) !== true ||
@@ -37,13 +33,12 @@ const TableRow = function (props) {
       rowData.transcription === '' ||
       rowData.russian === ''
     );
-  }, [rowData.russian, rowData.english, rowData.transcription]);
+  }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
   const classNameInputEnglish = classnames('', {
-    redInputTableRow: isRowInValid,
-    // redInputTableRow:
-    //   rowData.english === '' || englishFormat.test(rowData.english) !== true,
+    redInputTableRow:
+      rowData.english === '' || englishFormat.test(rowData.english) !== true,
   });
   const classNameInputTranscription = classnames('', {
     redInputTableRow: rowData.transcription === '',
@@ -63,18 +58,64 @@ const TableRow = function (props) {
     });
   };
 
+  //функция сохранения изменений слова КОНТЕКСТ
+  // const saveChanges = () => {
+  //   setError(false);
+  //   fetch(`/api/words/${rowData.id}/update`, {
+  //     method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+  //     body: JSON.stringify(rowData),
+  //     headers: {
+  //       'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(rowData => {
+  //       console.log(rowData);
+  //       updateData();
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //       setisWordsLoading(false);
+  //       setError(true);
+  //     });
+  // };
+
+  //функция удаления слова КОНТЕКСТ
+  // const deleteWord = () => {
+  //   setError(false);
+  //   fetch(`/api/words/${rowData.id}/delete`, {
+  //     method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+  //     body: JSON.stringify(rowData),
+  //     headers: {
+  //       'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(rowData => {
+  //       console.log(rowData);
+  //       updateData();
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //       setisWordsLoading(false);
+  //       setError(true);
+  //     });
+  // };
+
   //кнопка сохранить
   const handleClickSave = () => {
     if (!isRowInValid) {
-      console.log(rowData);
+      // saveChanges();
       setEditMode(!editMode); //снова убирается режим редактирования
     } else {
       alert(
         //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
-        'Остались незаполненные поля или поля содержат недопустивые знаки!',
+        'Остались незаполненные поля или поля содержат недопустимые знаки!',
       );
     }
   };
+
+  // if (error) return <ServerError />;
 
   return (
     <tr className="tableRow">
@@ -136,6 +177,10 @@ const TableRow = function (props) {
 };
 
 export default TableRow;
+
+//от Вари, но не включена проверка на символы
+// const getClassName = value =>
+//   `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
 
 // вариант для написания классов для инпутов:
 // сделать отдельный метод для проверки на длину:

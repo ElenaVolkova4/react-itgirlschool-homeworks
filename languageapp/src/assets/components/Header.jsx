@@ -21,7 +21,9 @@ const Header = () => {
         <Link to="/game">
           <div className="header_button">Training</div>
         </Link>
-        <div className="header_button">Add new word</div>
+        <Link to="/new">
+          <div className="header_button">Add new word</div>
+        </Link>
       </div>
     </div>
   );
