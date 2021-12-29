@@ -20,8 +20,8 @@ const NewWord = () => {
   const { updateData, error, setError } = useContext(WordsContext); //достаем функцию перерендера
 
   const history = useHistory(); // для возвращения пользователя к таблице после добавления слова
-  //валидация
 
+  //валидация
   //первоначальное состояние инпутов, когда нет ошибок (для валидации в handleChange)
   const [errorsIntuts, setErrorsIntuts] = useState({
     englishInput: false,
@@ -62,30 +62,31 @@ const NewWord = () => {
       ...newData, //копируем объект с полями newData
       [e.target.name]: e.target.value.toLowerCase(), //изменяем value inputов на вводимые значения в зависимости от ключа name и маленькими буквами (toLowerCase)
     });
-    //валидация, срабатывающая при первом вводе в поле (поэтому она в handleChange)
-    // if (e.target.name === english) {
-    //   setErrorsIntuts({
-    //     ...errorsIntuts,
-    //     english:
-    //       e.target.value === '' || englishFormat.test(e.target.value) !== true
-    //         ? true
-    //         : false,
-    //   });
-    // }
-
-    setErrorsIntuts({
-      ...errorsIntuts,
-      english:
-        e.target.value === '' || englishFormat.test(e.target.value) !== true
-          ? true
-          : false,
-      transcription: e.target.value.transcription === '' ? true : false,
-      russian:
-        e.target.value.russian === '' ||
-        russianFormat.test(newData.russian) !== true
-          ? true
-          : false,
-    });
+    //валидация, срабатывающая при первом вводе в поле (поэтому она в handleChange и специально создался стейт [errorsIntuts, setErrorsIntuts]
+    if (e.target.name === 'english') {
+      setErrorsIntuts({
+        ...errorsIntuts,
+        english:
+          e.target.value === '' || englishFormat.test(e.target.value) !== true
+            ? true
+            : false,
+      });
+    }
+    if (e.target.name === 'transcription') {
+      setErrorsIntuts({
+        ...errorsIntuts,
+        transcription: e.target.value === '' ? true : false,
+      });
+    }
+    if (e.target.name === 'russian') {
+      setErrorsIntuts({
+        ...errorsIntuts,
+        russian:
+          e.target.value === '' || russianFormat.test(e.target.value) !== true
+            ? true
+            : false,
+      });
+    }
   };
 
   //метод отправления нового слова на сервер
