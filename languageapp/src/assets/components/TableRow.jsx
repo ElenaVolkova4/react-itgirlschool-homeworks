@@ -76,6 +76,7 @@ const TableRow = function (props) {
       .then(response => response.json())
       .then(rowData => {
         console.log(rowData);
+        setisWordsLoading(false);
         updateData();
       })
       .catch(error => {
@@ -100,6 +101,7 @@ const TableRow = function (props) {
       .then(rowData => {
         console.log(rowData);
         updateData();
+        setisWordsLoading(false);
       })
       .catch(error => {
         console.log(error);

@@ -91,6 +91,8 @@ const NewWord = () => {
 
   //метод отправления нового слова на сервер
   const sentWord = () => {
+    setisWordsLoading(true);
+    setError(false);
     fetch('/api/words/add', {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(newData),
@@ -103,6 +105,7 @@ const NewWord = () => {
         console.log(newData);
         history.push('/'); //после добавления слова возвращает пользователя к таблице
         updateData();
+        setisWordsLoading(false);
       })
       .catch(error => {
         console.log(error);
