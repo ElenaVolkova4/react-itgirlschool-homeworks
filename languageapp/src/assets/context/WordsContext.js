@@ -29,7 +29,11 @@ const WordsContextProvider = props => {
     updateData();
   }, []);
 
-  // if (error) return <ServerError />;
+  //обновление данных без перерендера
+  // const updateData2 = value => {
+  //   setWords([...words, { id: words.length + 1, english: value }]);
+  // };
+
   return (
     <WordsContext.Provider value={{ words, isWordsLoading, updateData, error }}>
       {props.children}
