@@ -103,10 +103,9 @@ const NewWord = () => {
       .then(newData => {
         console.log(newData);
         console.log(words);
-        // this.words.push(newData);
+        // words.push(newData); НЕ РАБОТАЕТ
         history.push('/'); //после добавления слова возвращает пользователя к таблице
-        console.log(words);
-        // updateData();
+        updateData();
       })
       .catch(error => {
         console.log(error);

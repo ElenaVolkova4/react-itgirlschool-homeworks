@@ -16,7 +16,7 @@ const russianFormat = /^[а-яё-\s]+$/i; //поле english должно сод
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
-  const { updateData, error, setError, setisWordsLoading } =
+  const { words, updateData, error, setError, setisWordsLoading } =
     useContext(WordsContext); //достаем функцию перерендера и ошибку
 
   const [rowData, setRowData] = useState({
@@ -64,9 +64,6 @@ const TableRow = function (props) {
 
   //функция сохранения изменений слова НЕ РАБОТАЕТ????
   const saveChanges = () => {
-    setisWordsLoading(true);
-    setError(false);
-
     fetch(`/api/words/${rowData.id}/update`, {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(rowData),
@@ -77,20 +74,18 @@ const TableRow = function (props) {
       .then(response => response.json())
       .then(rowData => {
         console.log(rowData);
-        setisWordsLoading(false);
+        // this.words.push(rowData);
+
         updateData();
       })
       .catch(error => {
         console.log(error);
-        setisWordsLoading(false);
         setError(true);
       });
   };
 
   //функция удаления слова
   const deleteWord = () => {
-    setisWordsLoading(true);
-    setError(false);
     fetch(`/api/words/${rowData.id}/delete`, {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(rowData),
@@ -100,13 +95,11 @@ const TableRow = function (props) {
     })
       .then(response => response.json())
       .then(rowData => {
-        console.log(rowData);
+        // console.log(words);
         updateData();
-        setisWordsLoading(false);
       })
       .catch(error => {
         console.log(error);
-        setisWordsLoading(false);
         setError(true);
       });
   };
