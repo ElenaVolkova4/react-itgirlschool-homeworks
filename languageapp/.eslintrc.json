@@ -23,5 +23,6 @@
     "import/extensions": "off",
     "prefer-const": "error",
     "react/prop-types": "off"
-  }
+  },
+  "parser": "babel-eslint"
 }

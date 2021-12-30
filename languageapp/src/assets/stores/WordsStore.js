@@ -1,36 +1,55 @@
-import { makeAutoObservable, action, observable } from 'mobx';
+import { makeObservable, makeAutoObservable, action, observable } from 'mobx';
 
 class WordsStore {
   words = [];
+  isLoading = false;
+  serverError = false;
+
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this, {
+      words: observable,
+      // isLoading: observable,
+      // serverError: observable,
+      loadWords: action, //надо??
+      addWord: action,
+      removeWord: action,
+    });
   }
+  // или так?
+  // constructor() {
+  //   makeAutoObservable(this);
+  // }
+
+  // или так?
+  // decorate(WordsStore, {
+  //   words: observable,
+  //   addWord: action,
+  //   removeWord: action,
+  // });
 
   loadWords = () => {
+    this.isLoading = true;
+    this.serverError = false;
     fetch('/api/words')
       .then(response => response.json())
-      .then(words => {
-        setWords(words);
-        // setisWordsLoading(false);
+      .then(data => {
+        // console.log(data);
+        this.words.push(data);
+        this.isLoading = false;
       })
       .catch(error => {
         console.log(error);
-        // setisWordsLoading(false);
-        // setError(true);
+        this.isLoading = false;
+        this.serverError = true;
       });
   };
+
   addWord = word => {
     return this.words.push(word);
   };
 
-  removeWord = index => {
-    return this.words.splice(index, 1);
+  removeWord = id => {
+    return this.words.splice(id, 1);
   };
 }
-// decorate(WordsStore, {
-//   words: observable,
-//   addWord: action,
-//   removeWord: action,
-// });
-
 export default WordsStore;

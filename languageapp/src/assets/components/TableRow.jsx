@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './TableRow.scss';
 import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
@@ -8,47 +8,52 @@ import ServerError from './ServerError';
 import classnames from 'classnames'; //надо ли?
 import { observer, inject } from 'mobx-react';
 
-// console.log(rowData.english); //вот так обращаемся к value inputов
-
 //условия валидации полей input
 const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
 const russianFormat = /^[а-яё-\s]+$/i; //поле english должно содержать только слова русскими буквами, включая дефис (а можно использовать флаг /i)
 
 const TableRow = inject(['wordsStore'])(
   observer(({ wordsStore }) => {
+    useEffect(() => {
+      wordsStore.loadWords();
+    }, []);
+    // console.log(wordsStore.words);
+    // console.log(wordsStore.isLoading);
+
+    // console.log(words);
     const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
     const [rowData, setRowData] = useState({
       //первоначальные состояния (текст) полей input (из пропсов)
-      english: props.wordsStore.english,
-      transcription: props.wordsStore.transcription,
-      russian: props.wordsStore.russian,
-      id: props.id,
+      english: wordsStore.words.english,
+      transcription: wordsStore.words.transcription,
+      russian: wordsStore.words.russian,
+      id: wordsStore.words.id,
     });
 
-    //валидация
-
-    const isRowInValid = useMemo(() => {
-      return (
-        rowData.english.search(englishFormat) === -1 ||
-        russianFormat.test(rowData.russian) !== true ||
-        rowData.english === '' ||
-        rowData.transcription === '' ||
-        rowData.russian === ''
-      );
-    }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
+    // валидация
+    // const isRowInValid = useMemo(() => {
+    //   return (
+    //     rowData.english.search(englishFormat) === -1 ||
+    //     russianFormat.test(rowData.russian) !== true ||
+    //     rowData.english === '' ||
+    //     rowData.transcription === '' ||
+    //     rowData.russian === ''
+    //   );
+    // }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
 
     // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
-    const classNameInputEnglish = classnames('', {
-      redInputTableRow:
-        rowData.english === '' || englishFormat.test(rowData.english) !== true,
-    });
-    const classNameInputTranscription = classnames('', {
-      redInputTableRow: rowData.transcription === '',
-    });
-    const classNameInputRussian = classnames('', {
-      redInputTableRow:
-        rowData.russian === '' || russianFormat.test(rowData.russian) !== true,
-    });
+
+    // const classNameInputEnglish = classnames('', {
+    //   redInputTableRow:
+    //     rowData.english === '' || englishFormat.test(rowData.english) !== true,
+    // });
+    // const classNameInputTranscription = classnames('', {
+    //   redInputTableRow: rowData.transcription === '',
+    // });
+    // const classNameInputRussian = classnames('', {
+    //   redInputTableRow:
+    //     rowData.russian === '' || russianFormat.test(rowData.russian) !== true,
+    // });
 
     const handleClick = () => setEditMode(!editMode); //по клику у строки появляется состояние редактируема
 
@@ -82,40 +87,23 @@ const TableRow = inject(['wordsStore'])(
     //     });
     // };
 
-    //функция удаления слова КОНТЕКСТ
-    // const deleteWord = () => {
-    //   setError(false);
-    //   fetch(`/api/words/${rowData.id}/delete`, {
-    //     method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
-    //     body: JSON.stringify(rowData),
-    //     headers: {
-    //       'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
-    //     },
-    //   })
-    //     .then(response => response.json())
-    //     .then(rowData => {
-    //       console.log(rowData);
-    //       updateData();
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //       setisWordsLoading(false);
-    //       setError(true);
-    //     });
-    // };
+    // функция удаления слова
+    const deleteWord = id => {
+      wordsStore.removeWord(id);
+    };
 
     //кнопка сохранить
-    const handleClickSave = () => {
-      if (!isRowInValid) {
-        // saveChanges();
-        setEditMode(!editMode); //снова убирается режим редактирования
-      } else {
-        alert(
-          //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
-          'Остались незаполненные поля или поля содержат недопустимые знаки!',
-        );
-      }
-    };
+    // const handleClickSave = () => {
+    //   if (!isRowInValid) {
+    //     // saveChanges();
+    //     setEditMode(!editMode); //снова убирается режим редактирования
+    //   } else {
+    //     alert(
+    //       //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
+    //       'Остались незаполненные поля или поля содержат недопустимые знаки!',
+    //     );
+    //   }
+    // };
 
     // if (error) return <ServerError />;
 
@@ -127,7 +115,7 @@ const TableRow = inject(['wordsStore'])(
               // className={classNameInputEnglish} тогда в classNameInputEnglish надо заменить ' ' на 'inputTableRow'
               //или вариант:
               className={`inputTableRow ${classNameInputEnglish}`}
-              value={rowData.english}
+              value={wordsStore.words.english}
               name="english"
               onChange={handleChange}
             />
@@ -171,7 +159,7 @@ const TableRow = inject(['wordsStore'])(
         ) : (
           <td className="tableRow_actions">
             <ButtonEdit onClick={handleClick} />
-            <ButtonDelete />
+            <ButtonDelete onClick={deleteWord(wordsStore.id)} />
           </td>
         )}
       </tr>
@@ -180,15 +168,3 @@ const TableRow = inject(['wordsStore'])(
 );
 
 export default TableRow;
-
-//от Вари, но не включена проверка на символы
-// const getClassName = value =>
-//   `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
-
-// вариант для написания классов для инпутов:
-// сделать отдельный метод для проверки на длину:
-// const isValidLength = value =>!!value.length;
-// И отдельный метод для проверки регулярки:
-// const areAllCharactersValid = (value, regExp) => rvalue.search(regExp) !== -1
-// И потом по ним получать класс:
-// `inputTableRow ${!isValidLength(rowData.english) || !areAllCharactersValid(rowData.english, englishFormat) ? 'redInputTableRow' : ''}`

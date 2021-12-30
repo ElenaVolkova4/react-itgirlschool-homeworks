@@ -5,10 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import WordStore from './assets/stores/WordsStore';
+import WordsStore from './assets/stores/WordsStore';
 
 const stores = {
-  wordStore: new WordStore(),
+  wordsStore: new WordsStore(),
 };
 
 ReactDOM.render(
