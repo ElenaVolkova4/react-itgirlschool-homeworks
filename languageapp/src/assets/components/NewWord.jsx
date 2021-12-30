@@ -17,7 +17,7 @@ const NewWord = () => {
     transcription: '',
     russian: '',
   });
-  const { updateData, error, setError } = useContext(WordsContext); //достаем функцию перерендера
+  const { words, updateData, error, setError } = useContext(WordsContext); //достаем функцию перерендера
 
   const history = useHistory(); // для возвращения пользователя к таблице после добавления слова
 
@@ -91,7 +91,6 @@ const NewWord = () => {
 
   //метод отправления нового слова на сервер
   const sentWord = () => {
-    setisWordsLoading(true);
     setError(false);
     fetch('/api/words/add', {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
@@ -103,13 +102,14 @@ const NewWord = () => {
       .then(response => response.json())
       .then(newData => {
         console.log(newData);
+        console.log(words);
+        // this.words.push(newData);
         history.push('/'); //после добавления слова возвращает пользователя к таблице
-        updateData();
-        setisWordsLoading(false);
+        console.log(words);
+        // updateData();
       })
       .catch(error => {
         console.log(error);
-        setisWordsLoading(false);
         setError(true);
       });
   };

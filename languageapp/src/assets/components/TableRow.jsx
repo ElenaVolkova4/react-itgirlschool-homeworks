@@ -16,7 +16,8 @@ const russianFormat = /^[а-яё-\s]+$/i; //поле english должно сод
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
-  const { updateData, error, setError } = useContext(WordsContext); //достаем функцию перерендера и ошибку
+  const { updateData, error, setError, setisWordsLoading } =
+    useContext(WordsContext); //достаем функцию перерендера и ошибку
 
   const [rowData, setRowData] = useState({
     //первоначальные состояния (текст) полей input (из пропсов)
