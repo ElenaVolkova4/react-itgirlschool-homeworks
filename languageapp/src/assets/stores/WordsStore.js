@@ -8,12 +8,13 @@ class WordsStore {
   constructor() {
     makeObservable(this, {
       words: observable,
-      // isLoading: observable,
-      // serverError: observable,
+      isLoading: observable,
+      serverError: observable,
       loadWords: action, //надо??
       addWord: action,
       removeWord: action,
     });
+    this.loadWords();
   }
   // или так?
   // constructor() {
