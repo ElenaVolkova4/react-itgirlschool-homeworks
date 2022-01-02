@@ -11,14 +11,14 @@ import classnames from 'classnames'; //надо ли?
 const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
 const russianFormat = /^[а-яё-\s]+$/i; //поле english должно содержать только слова русскими буквами, включая дефис (а можно использовать флаг /i)
 
-const TableRow = () => {
+const TableRow = props => {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
   const [rowData, setRowData] = useState({
     //первоначальные состояния (текст) полей input (из пропсов)
-    english: words.english,
-    transcription: words.transcription,
-    russian: words.russian,
-    id: words.id,
+    english: props.english,
+    transcription: props.transcription,
+    russian: props.russian,
+    id: props.id,
   });
 
   // валидация
@@ -150,7 +150,7 @@ const TableRow = () => {
       ) : (
         <td className="tableRow_actions">
           <ButtonEdit onClick={handleClick} />
-          <ButtonDelete onClick={deleteWord(rowData.id)} />
+          {/* <ButtonDelete onClick={deleteWord(rowData.id)} /> */}
         </td>
       )}
     </tr>

@@ -23,7 +23,7 @@ const Table = inject(['wordsStore'])(
         <table className="table">
           <TableHeader />
           <tbody>
-            {words?.map((word, i) => (
+            {wordsStore.words?.map((word, i) => (
               <TableRow
                 key={word.id}
                 english={word.english}

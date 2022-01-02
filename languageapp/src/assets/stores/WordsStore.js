@@ -34,8 +34,7 @@ class WordsStore {
     fetch('/api/words')
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
-        this.words.push(data);
+        this.words = data;
         this.isLoading = false;
       })
       .catch(error => {
