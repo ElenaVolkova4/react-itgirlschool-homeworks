@@ -13,8 +13,6 @@ const Table = inject(['wordsStore'])(
     // console.log(wordsStore);
     // console.log(words[0].english);
 
-    //достаем слова с сервера через контекст
-    //  const { words, isWordsLoading, error } = useContext(WordsContext);
     //  if (error) return <ServerError />;
     //  if (isWordsLoading || !words.length) return <Loader />;
 
@@ -30,6 +28,7 @@ const Table = inject(['wordsStore'])(
                 transcription={word.transcription}
                 russian={word.russian}
                 id={word.id}
+                deleteWord={wordsStore.removeWord}
               />
             ))}
           </tbody>
