@@ -96,9 +96,9 @@ const NewWord = inject(['wordsStore'])(
       wordsStore.addWord(newData);
       history.push('/'); //после добавления слова возвращает пользователя к таблице
     };
-
+    console.log(wordsStore.serverError);
     //как добавить ошибку ответ сервера?
-    // if (error) return <ServerError />;
+    if (wordsStore.serverError) return <ServerError />;
 
     return (
       <div className="newWord">

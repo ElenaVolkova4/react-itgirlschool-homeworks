@@ -2,15 +2,15 @@ import React from 'react';
 import './Table.scss';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
-import { words } from './dataWords';
+// import { words } from './dataWords';//нужно, если слова приходят не с сервера
 import Loader from './Loader';
 import ServerError from './ServerError';
 import { observer, inject } from 'mobx-react';
 
 const Table = inject(['wordsStore'])(
   observer(({ wordsStore }) => {
-    //  if (error) return <ServerError />;
-    //  if (isWordsLoading || !words.length) return <Loader />;
+    if (wordsStore.serverError) return <ServerError />;
+    if (wordsStore.isLoading || !wordsStore.words.length) return <Loader />;
 
     return (
       <div className="main_table">
