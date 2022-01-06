@@ -4,7 +4,6 @@ import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
-import ServerError from './ServerError';
 import classnames from 'classnames'; //надо ли?
 
 //условия валидации полей input

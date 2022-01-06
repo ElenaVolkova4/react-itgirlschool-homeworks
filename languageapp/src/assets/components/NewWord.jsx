@@ -19,7 +19,6 @@ const NewWord = inject(['wordsStore'])(
       transcription: '',
       russian: '',
     });
-    // const { updateData, error, setError } = useContext(WordsContext); //достаем функцию перерендера
 
     const history = useHistory(); // для возвращения пользователя к таблице после добавления слова
 
@@ -96,8 +95,7 @@ const NewWord = inject(['wordsStore'])(
       wordsStore.addWord(newData);
       history.push('/'); //после добавления слова возвращает пользователя к таблице
     };
-    console.log(wordsStore.serverError);
-    //как добавить ошибку ответ сервера?
+
     if (wordsStore.serverError) return <ServerError />;
 
     return (
