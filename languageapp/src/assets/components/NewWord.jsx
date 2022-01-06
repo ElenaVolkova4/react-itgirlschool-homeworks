@@ -30,6 +30,9 @@ const NewWord = inject(['wordsStore'])(
       transcriptionInput: false,
       russianInput: false,
     });
+    const deleteWord2 = id => {
+      props.addWord(id);
+    };
 
     const isInputsInValid = useMemo(() => {
       return (
@@ -93,23 +96,23 @@ const NewWord = inject(['wordsStore'])(
 
     //метод отправления нового слова на сервер
     const sentWord = () => {
-      fetch('/api/words/add', {
-        method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
-        body: JSON.stringify(newData),
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
-        },
-      })
-        .then(response => response.json())
-        .then(newData => {
-          console.log(newData);
-          wordsStore.addWord(newData); //добавление нового слова в массив
-          history.push('/'); //после добавления слова возвращает пользователя к таблице
-        })
-        .catch(error => {
-          console.log(error);
-          wordsStore.isLoading = false;
-        });
+      // fetch('/api/words/add', {
+      //   method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+      //   body: JSON.stringify(newData),
+      //   headers: {
+      //     'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+      //   },
+      // })
+      //   .then(response => response.json())
+      //   .then(newData => {
+      //     console.log(newData);
+      //     wordsStore.addWord(newData); //добавление нового слова в массив
+      //     history.push('/'); //после добавления слова возвращает пользователя к таблице
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //     wordsStore.isLoading = false;
+      //   });
     };
 
     // if (error) return <ServerError />;

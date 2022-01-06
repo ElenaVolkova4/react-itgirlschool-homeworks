@@ -49,7 +49,7 @@ class WordsStore {
   };
 
   removeWord = id => {
-    return this.words.splice(id, 1);
+    this.words = this.words.filter(el => el.id == !id);
   };
 }
 export default WordsStore;

@@ -79,7 +79,8 @@ const TableRow = props => {
   // };
 
   // функция удаления слова
-  const deleteWord2 = id => {
+  const deleteWord = id => {
+    console.log(id);
     props.deleteWord(id);
   };
 
@@ -150,7 +151,7 @@ const TableRow = props => {
       ) : (
         <td className="tableRow_actions">
           <ButtonEdit onClick={handleClick} />
-          <ButtonDelete onClick={deleteWord2()} />
+          <ButtonDelete onClick={() => deleteWord(props.id)} />
         </td>
       )}
     </tr>
