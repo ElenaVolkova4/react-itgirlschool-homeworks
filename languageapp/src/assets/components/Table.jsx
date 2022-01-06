@@ -9,10 +9,6 @@ import { observer, inject } from 'mobx-react';
 
 const Table = inject(['wordsStore'])(
   observer(({ wordsStore }) => {
-    console.log(words);
-    // console.log(wordsStore);
-    // console.log(words[0].english);
-
     //  if (error) return <ServerError />;
     //  if (isWordsLoading || !words.length) return <Loader />;
 

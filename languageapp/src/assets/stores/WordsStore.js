@@ -45,7 +45,23 @@ class WordsStore {
   };
 
   addWord = word => {
-    return this.words.push(word);
+    this.words.push(word);
+    fetch('/api/words/add', {
+      method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+      body: JSON.stringify(word),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+      },
+    })
+      .then(response => response.json())
+      .then(words => {
+        console.log(words);
+      })
+      .catch(error => {
+        console.log(error);
+        this.isLoading = false;
+        this.serverError = true;
+      });
   };
 
   removeWord = id => {

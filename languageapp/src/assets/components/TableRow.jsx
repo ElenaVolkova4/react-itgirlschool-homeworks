@@ -80,7 +80,6 @@ const TableRow = props => {
 
   // функция удаления слова
   const deleteWord = id => {
-    console.log(id);
     props.deleteWord(id);
   };
 
