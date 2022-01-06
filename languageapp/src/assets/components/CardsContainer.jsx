@@ -1,14 +1,21 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import './CardsContainer.scss';
 import WordCard from './WordCard';
-import { words } from './dataWords';
+// import { words } from './dataWords';
 import ArrowNext from './ArrowNext';
 import ArrowPrev from './ArrowPrev';
+import { WordsContext } from '../context/WordsContext';
+import Loader from './Loader';
+import ServerError from './ServerError';
 
 const CardsContainer = () => {
+  //достаем слова с сервера
+  const { words, isWordsLoading, error } = useContext(WordsContext);
+
   const [selectedCardIndex, setselectedCardIndex] = useState(0); //для карусели карточек
   const [countedLearnedCard, setcountedLearnedCard] = useState(0); //для подсчета выученных слов в тренировке
 
+  //достаем слова с сервера
   const handleClickNext = () => {
     //вариант с конечной каруселью
     // const newIndex = selectedCardIndex + 1;
@@ -41,6 +48,9 @@ const CardsContainer = () => {
     [countedLearnedCard],
   );
 
+  if (error) return <ServerError />;
+  if (isWordsLoading || !words.length) return <Loader />;
+
   return (
     <div className="cardsContainer">
       <div className="cardsContainer_count">
@@ -53,10 +63,10 @@ const CardsContainer = () => {
           // disabled={selectedCardIndex === 0}
         />
         <WordCard
-          key={words[selectedCardIndex].id}
-          english={words[selectedCardIndex].english}
-          transcription={words[selectedCardIndex].transcription}
-          russian={words[selectedCardIndex].russian}
+          key={words[selectedCardIndex]?.id}
+          english={words[selectedCardIndex]?.english}
+          transcription={words[selectedCardIndex]?.transcription}
+          russian={words[selectedCardIndex]?.russian}
           learnedCard={learnedCard} //не работает
           notLearnedCard={notLearnedCard} //не работает
 

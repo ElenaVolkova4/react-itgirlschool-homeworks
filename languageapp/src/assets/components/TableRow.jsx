@@ -1,17 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import './TableRow.scss';
 import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
-
-import classnames from 'classnames'; //надо ли?
+import classnames from 'classnames';
+import { WordsContext } from '../context/WordsContext';
+import ServerError from './ServerError';
 
 // console.log(rowData.english); //вот так обращаемся к value inputов
-
-//от Вари, но не включена проверка на символы
-const getClassName = value =>
-  `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
 
 //условия валидации полей input
 const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
@@ -19,17 +16,20 @@ const russianFormat = /^[а-яё-\s]+$/i; //поле english должно сод
 
 const TableRow = function (props) {
   const [editMode, setEditMode] = useState(false); // режим редактирования строчки таблицы (самого компонента TableRow) изначально не редактируема (false)
+  const { words, updateData, error, setError, setisWordsLoading } =
+    useContext(WordsContext); //достаем функцию перерендера и ошибку
+
   const [rowData, setRowData] = useState({
     //первоначальные состояния (текст) полей input (из пропсов)
     english: props.english,
     transcription: props.transcription,
     russian: props.russian,
+    id: props.id,
   });
 
   //валидация
 
   const isRowInValid = useMemo(() => {
-    // console.log(russianFormat.test(rowData.russian));
     return (
       rowData.english.search(englishFormat) === -1 ||
       russianFormat.test(rowData.russian) !== true ||
@@ -37,13 +37,12 @@ const TableRow = function (props) {
       rowData.transcription === '' ||
       rowData.russian === ''
     );
-  }, [rowData.russian, rowData.english, rowData.transcription]);
+  }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
   const classNameInputEnglish = classnames('', {
-    redInputTableRow: isRowInValid,
-    // redInputTableRow:
-    //   rowData.english === '' || englishFormat.test(rowData.english) !== true,
+    redInputTableRow:
+      rowData.english === '' || englishFormat.test(rowData.english) !== true,
   });
   const classNameInputTranscription = classnames('', {
     redInputTableRow: rowData.transcription === '',
@@ -63,18 +62,62 @@ const TableRow = function (props) {
     });
   };
 
+  //функция сохранения изменений слова НЕ РАБОТАЕТ????
+  const saveChanges = () => {
+    fetch(`/api/words/${rowData.id}/update`, {
+      method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+      body: JSON.stringify(rowData),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+      },
+    })
+      .then(response => response.json())
+      .then(rowData => {
+        console.log(rowData);
+        // this.words.push(rowData);
+
+        updateData();
+      })
+      .catch(error => {
+        console.log(error);
+        setError(true);
+      });
+  };
+
+  //функция удаления слова
+  const deleteWord = () => {
+    fetch(`/api/words/${rowData.id}/delete`, {
+      method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+      body: JSON.stringify(rowData),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+      },
+    })
+      .then(response => response.json())
+      .then(rowData => {
+        // console.log(words);
+        updateData();
+      })
+      .catch(error => {
+        console.log(error);
+        setError(true);
+      });
+  };
+
   //кнопка сохранить
   const handleClickSave = () => {
     if (!isRowInValid) {
-      console.log(rowData);
+      saveChanges();
       setEditMode(!editMode); //снова убирается режим редактирования
     } else {
       alert(
-        //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
-        'Остались незаполненные поля или поля содержат недопустивые знаки!',
+        //срабатывает, если закоментить в конпке // disabled={isRowInValid}
+        'Остались незаполненные поля или поля содержат недопустимые знаки!',
       );
     }
   };
+
+  if (error) return <ServerError />;
 
   return (
     <tr className="tableRow">
@@ -128,7 +171,7 @@ const TableRow = function (props) {
       ) : (
         <td className="tableRow_actions">
           <ButtonEdit onClick={handleClick} />
-          <ButtonDelete />
+          <ButtonDelete onClick={deleteWord} />
         </td>
       )}
     </tr>
@@ -136,6 +179,10 @@ const TableRow = function (props) {
 };
 
 export default TableRow;
+
+//от Вари, но не включена проверка на символы
+// const getClassName = value =>
+//   `inputTableRow ${!value.length ? 'redInputTableRow' : ''}`;
 
 // вариант для написания классов для инпутов:
 // сделать отдельный метод для проверки на длину:
