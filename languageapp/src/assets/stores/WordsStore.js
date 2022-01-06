@@ -45,6 +45,7 @@ class WordsStore {
   };
 
   addWord = word => {
+    this.serverError = false;
     fetch('/api/words/add', {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(word),
@@ -58,12 +59,12 @@ class WordsStore {
       })
       .catch(error => {
         console.log(error);
-        this.isLoading = false;
         this.serverError = true;
       });
   };
 
   removeWord = id => {
+    this.serverError = false;
     fetch(`/api/words/${id}/delete`, {
       method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
       body: JSON.stringify(this.words),
@@ -77,52 +78,8 @@ class WordsStore {
       })
       .catch(error => {
         console.log(error);
-        this.isLoading = false;
         this.serverError = true;
       });
   };
 }
 export default WordsStore;
-
-// //функция для добавления слов
-// handleClickToAdd = value => {
-//   //обнуляем ошибку
-//   this.errorText = '';
-//   //только если нет пустых граф
-//   if (
-//     value.transcription !== '' ||
-//     value.english !== '' ||
-//     value.russian !== ''
-//   ) {
-//     try {
-//       //делаем фетч
-//       fetch(`/api/words/add`, {
-//         method: 'POST',
-//         body: JSON.stringify(value),
-//         headers: {
-//           'Content-Type': 'application/json;charset=utf-8',
-//         },
-//       })
-//         .then(response => response.json())
-//         .then(word => {
-//           // добавляем слово в массив со словами, который запросили до этого
-//           this.data.push(word);
-//           value = {
-//             english: '',
-//             transcription: '',
-//             russian: '',
-//             tags: '',
-//           };
-//         })
-//         .catch(error => {
-//           console.log(error);
-//           this.errorText = 'Проверьте ваше соединение с сетью.';
-//           // console.log(this.errorText);
-//         });
-//     } catch (error) {
-//       console.log(error);
-//       this.errorText = 'Что-то пошло не так.';
-//       console.log(this.errorText);
-//     }
-//   }
-// };

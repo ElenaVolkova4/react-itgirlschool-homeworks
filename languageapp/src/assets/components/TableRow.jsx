@@ -96,8 +96,6 @@ const TableRow = props => {
   //   }
   // };
 
-  // if (error) return <ServerError />;
-
   return (
     <tr className="tableRow">
       <td>
