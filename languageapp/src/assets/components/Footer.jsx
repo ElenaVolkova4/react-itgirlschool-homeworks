@@ -4,8 +4,8 @@ import './Footer.scss';
 const Footer = () => {
   return (
     <div className="footer">
-      <p className="foter_copyright">&#169; 2021</p>
-      <p className="footer_text">Волкова Елена</p>
+      <div className="foter_copyright">&#169; 2021</div>
+      <div className="footer_text">Волкова Елена</div>
       <div className="footer_networks">
         <a href="https://github.com/ElenaVolkova4">
           <svg
