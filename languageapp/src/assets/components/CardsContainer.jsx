@@ -64,10 +64,10 @@ const CardsContainer = inject(['wordsStore'])(
             // disabled={selectedCardIndex === 0}
           />
           <WordCard
-            key={words[selectedCardIndex].id}
-            english={words[selectedCardIndex].english}
-            transcription={words[selectedCardIndex].transcription}
-            russian={words[selectedCardIndex].russian}
+            key={words[selectedCardIndex]?.id}
+            english={words[selectedCardIndex]?.english}
+            transcription={words[selectedCardIndex]?.transcription}
+            russian={words[selectedCardIndex]?.russian}
             learnedCard={learnedCard} //не работает
             notLearnedCard={notLearnedCard} //не работает
 
