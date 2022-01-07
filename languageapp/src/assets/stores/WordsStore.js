@@ -13,6 +13,7 @@ class WordsStore {
       loadWords: action, //надо??
       addWord: action,
       removeWord: action,
+      saveChanges: action,
     });
     this.loadWords();
   }
@@ -75,6 +76,24 @@ class WordsStore {
       .then(response => response.json())
       .then(word => {
         this.words = this.words.filter(el => el.id !== id);
+      })
+      .catch(error => {
+        console.log(error);
+        this.serverError = true;
+      });
+  };
+
+  saveChanges = id => {
+    fetch(`/api/words/${id}/update`, {
+      method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
+      body: JSON.stringify(this.words),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.words = data;
       })
       .catch(error => {
         console.log(error);

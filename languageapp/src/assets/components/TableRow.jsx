@@ -55,9 +55,13 @@ const TableRow = props => {
     });
   };
 
-  //функция сохранения изменений слова КОНТЕКСТ
+  // функция сохранения изменений слова (НЕ РАБОТАЕТ ИЗ-ЗА СЕРВЕРА)
+  const saveChanges = word => {
+    props.saveChanges(word);
+  };
+
+  //функция сохранения изменений слова НЕ РАБОТАЕТ????
   // const saveChanges = () => {
-  //   setError(false);
   //   fetch(`/api/words/${rowData.id}/update`, {
   //     method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
   //     body: JSON.stringify(rowData),
@@ -68,11 +72,12 @@ const TableRow = props => {
   //     .then(response => response.json())
   //     .then(rowData => {
   //       console.log(rowData);
+  //       // this.words.push(rowData);
+
   //       updateData();
   //     })
   //     .catch(error => {
   //       console.log(error);
-  //       setisWordsLoading(false);
   //       setError(true);
   //     });
   // };
@@ -85,7 +90,7 @@ const TableRow = props => {
   //кнопка сохранить
   const handleClickSave = () => {
     if (!isRowInValid) {
-      // saveChanges();
+      saveChanges(rowData);
       setEditMode(!editMode); //снова убирается режим редактирования
     } else {
       alert(

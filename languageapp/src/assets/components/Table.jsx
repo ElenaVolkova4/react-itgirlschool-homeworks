@@ -25,6 +25,7 @@ const Table = inject(['wordsStore'])(
                 russian={word.russian}
                 id={word.id}
                 deleteWord={wordsStore.removeWord}
+                saveChanges={wordsStore.saveChanges}
               />
             ))}
           </tbody>
