@@ -13,7 +13,7 @@
 }
 
 .inputTableRow {
-  width: 100px;
+  width: 140px;
   border: 1px solid #685096;
   border-radius: 5px;
   outline: none;
@@ -22,7 +22,8 @@
   font-weight: bold;
 
   @media screen and (max-width: $tablet) {
-    // width: 350px;
+    width: 60px;
+    font-size: 11px;
   }
 }
 
