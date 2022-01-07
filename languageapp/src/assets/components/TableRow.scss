@@ -6,26 +6,24 @@
   justify-content: center;
   gap: 5px;
   border: none;
+
+  @media screen and (max-width: $tablet) {
+    gap: 2px;
+  }
 }
-// input {
-//   width: 100%;
-//   border: 1px solid #685096;
-//   border-radius: 5px;
-//   // background-color: $l;
-//   outline: none;
-//   text-align: left;
-// }
 
 .inputTableRow {
-  // width: 100%;
   width: 100px;
   border: 1px solid #685096;
   border-radius: 5px;
-  // background-color: $l;
   outline: none;
   text-align: left;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
+
+  @media screen and (max-width: $tablet) {
+    // width: 350px;
+  }
 }
 
 .redInputTableRow {

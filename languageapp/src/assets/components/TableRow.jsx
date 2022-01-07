@@ -21,29 +21,29 @@ const TableRow = props => {
   });
 
   // валидация
-  // const isRowInValid = useMemo(() => {
-  //   return (
-  //     rowData.english.search(englishFormat) === -1 ||
-  //     russianFormat.test(rowData.russian) !== true ||
-  //     rowData.english === '' ||
-  //     rowData.transcription === '' ||
-  //     rowData.russian === ''
-  //   );
-  // }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
+  const isRowInValid = useMemo(() => {
+    return (
+      rowData.english.search(englishFormat) === -1 ||
+      russianFormat.test(rowData.russian) !== true ||
+      rowData.english === '' ||
+      rowData.transcription === '' ||
+      rowData.russian === ''
+    );
+  }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
 
-  // const classNameInputEnglish = classnames('', {
-  //   redInputTableRow:
-  //     rowData.english === '' || englishFormat.test(rowData.english) !== true,
-  // });
-  // const classNameInputTranscription = classnames('', {
-  //   redInputTableRow: rowData.transcription === '',
-  // });
-  // const classNameInputRussian = classnames('', {
-  //   redInputTableRow:
-  //     rowData.russian === '' || russianFormat.test(rowData.russian) !== true,
-  // });
+  const classNameInputEnglish = classnames('', {
+    redInputTableRow:
+      rowData.english === '' || englishFormat.test(rowData.english) !== true,
+  });
+  const classNameInputTranscription = classnames('', {
+    redInputTableRow: rowData.transcription === '',
+  });
+  const classNameInputRussian = classnames('', {
+    redInputTableRow:
+      rowData.russian === '' || russianFormat.test(rowData.russian) !== true,
+  });
 
   const handleClick = () => setEditMode(!editMode); //по клику у строки появляется состояние редактируема
 
@@ -83,17 +83,17 @@ const TableRow = props => {
   };
 
   //кнопка сохранить
-  // const handleClickSave = () => {
-  //   if (!isRowInValid) {
-  //     // saveChanges();
-  //     setEditMode(!editMode); //снова убирается режим редактирования
-  //   } else {
-  //     alert(
-  //       //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
-  //       'Остались незаполненные поля или поля содержат недопустимые знаки!',
-  //     );
-  //   }
-  // };
+  const handleClickSave = () => {
+    if (!isRowInValid) {
+      // saveChanges();
+      setEditMode(!editMode); //снова убирается режим редактирования
+    } else {
+      alert(
+        //срабатывает, если закоменнить в конпке // disabled={isRowInValid}
+        'Остались незаполненные поля или поля содержат недопустимые знаки!',
+      );
+    }
+  };
 
   return (
     <tr className="tableRow">

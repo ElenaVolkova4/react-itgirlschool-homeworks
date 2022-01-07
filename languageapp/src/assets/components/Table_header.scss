@@ -10,4 +10,8 @@
   font-weight: 900; //почему не срабатывает?
   border-top: 1px solid $customLightTextColor;
   color: rgb(49, 9, 87);
+
+  @media screen and (max-width: $tablet) {
+    font-size: 14px;
+  }
 }
