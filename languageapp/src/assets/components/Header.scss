@@ -36,10 +36,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  // @media screen and (max-width: $tablet) {
-  //   font-size: 5px;
-  // }
 }
 
 .header_buttons {
@@ -47,7 +43,6 @@
   flex-direction: row;
   gap: 10px;
   align-items: center;
-  // justify-content: flex-end;
 
   @media screen and (max-width: $tablet) {
     justify-content: center;
@@ -71,7 +66,6 @@
       //нажатие на кнопку
       outline: none;
       box-shadow: 0px 0px 13px 4px #b274e6;
-      // box-shadow: 0 0 0 4px rgb(142, 107, 152, 0.75);
     }
 
     @media screen and (max-width: $tablet) {

@@ -1,10 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import './TableRow.scss';
 import ButtonEdit from './Buttons/Button_edit';
 import ButtonDelete from './Buttons/Button_delete';
 import ButtonSave from './Buttons/Button_save';
 import ButtonCancel from './Buttons/Button_cancel';
-import classnames from 'classnames'; //надо ли?
+import classnames from 'classnames';
 
 //условия валидации полей input
 const englishFormat = /^[a-zA-Z-\s]+$/; //поле english должно содержать только слова англ буквами, включая дефис (можно прописывать отдельно и заглавные и строчные)
@@ -32,7 +32,6 @@ const TableRow = props => {
   }, [rowData.russian, rowData.english, rowData.transcription, rowData.id]);
 
   // стили для полей input (inputTableRow и если поле пустое/есть неправильные символы - redInputTableRow)
-
   const classNameInputEnglish = classnames('', {
     redInputTableRow:
       rowData.english === '' || !englishFormat.test(rowData.english),

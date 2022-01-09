@@ -1,9 +1,7 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo } from 'react';
 import './NewWord.scss';
 import classnames from 'classnames';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-// import { WordsContext } from '../context/WordsContext';
 import ServerError from './ServerError';
 import { observer, inject } from 'mobx-react';
 
@@ -57,7 +55,7 @@ const NewWord = inject(['wordsStore'])(
       // newData.russian === '' || russianFormat.test(newData.russian) !== true,
     });
 
-    //ф-ция, чтобы можно было заность в input текст
+    //ф-ция, чтобы можно было заносить в input текст
     const handleChange = e => {
       setnewData({
         ...newData, //копируем объект с полями newData

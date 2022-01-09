@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import './CardsContainer.scss';
 import WordCard from './WordCard';
-// import { words } from './dataWords';
+// import { words } from './dataWords';//нужно, если слова приходят не с сервераа из файла
 import ArrowNext from './ArrowNext';
 import ArrowPrev from './ArrowPrev';
 import ServerError from './ServerError';
@@ -12,9 +12,7 @@ const CardsContainer = inject(['wordsStore'])(
     const [selectedCardIndex, setselectedCardIndex] = useState(0); //для карусели карточек
     const [countedLearnedCard, setcountedLearnedCard] = useState(0); //для подсчета выученных слов в тренировке
 
-    const words = wordsStore.words;
-    // console.log(words.length);
-    // console.log(words[0].russian);
+    const words = wordsStore.words; //слова из стора
 
     const handleClickNext = () => {
       //вариант с конечной каруселью
@@ -61,15 +59,15 @@ const CardsContainer = inject(['wordsStore'])(
           <ArrowPrev
             onClick={handleClickPrev}
 
-            // disabled={selectedCardIndex === 0}
+            // disabled={selectedCardIndex === 0}//для конечной карусели
           />
           <WordCard
             key={words[selectedCardIndex]?.id}
             english={words[selectedCardIndex]?.english}
             transcription={words[selectedCardIndex]?.transcription}
             russian={words[selectedCardIndex]?.russian}
-            learnedCard={learnedCard} //не работает
-            notLearnedCard={notLearnedCard} //не работает
+            learnedCard={learnedCard}
+            notLearnedCard={notLearnedCard}
 
             //вот так внутри лучше не писать
             // learnedCard={() => setcountedLearnedCard(countedLearnedCard + 1)}
@@ -77,7 +75,7 @@ const CardsContainer = inject(['wordsStore'])(
           />
           <ArrowNext
             onClick={handleClickNext}
-            // disabled={selectedCardIndex === words.length - 1}
+            // disabled={selectedCardIndex === words.length - 1}//для конечной карусели
           />
         </div>
         <div className="cardsContainer_count">

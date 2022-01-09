@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.scss';
 import Header from './assets/components/Header.jsx';
 import WordCard from './assets/components/WordCard.jsx';
@@ -8,9 +8,7 @@ import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
 import ErrorPage from './assets/components/ErrorPage.jsx';
 import NewWord from './assets/components/NewWord.jsx';
-import Loader from './assets/components/Loader';
-import ServerError from './assets/components/ServerError';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 const App = () => {
   return (

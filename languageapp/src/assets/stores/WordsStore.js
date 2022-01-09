@@ -10,19 +10,19 @@ class WordsStore {
       words: observable,
       isLoading: observable,
       serverError: observable,
-      loadWords: action, //надо??
+      loadWords: action,
       addWord: action,
       removeWord: action,
       saveChanges: action,
     });
     this.loadWords();
   }
-  // или так?
+  // или так
   // constructor() {
   //   makeAutoObservable(this);
   // }
 
-  // или так?
+  // или так
   // decorate(WordsStore, {
   //   words: observable,
   //   addWord: action,

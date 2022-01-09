@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss';
 import logo from '../images/logo10.png';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
