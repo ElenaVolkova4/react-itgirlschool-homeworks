@@ -68,7 +68,7 @@ const NewWord = inject(['wordsStore'])(
         setErrorsIntuts({
           ...errorsIntuts,
           english:
-            e.target.value === '' || englishFormat.test(e.target.value) !== true
+            e.target.value === '' || !englishFormat.test(e.target.value)
               ? true
               : false,
         });
@@ -83,7 +83,7 @@ const NewWord = inject(['wordsStore'])(
         setErrorsIntuts({
           ...errorsIntuts,
           russian:
-            e.target.value === '' || russianFormat.test(e.target.value) !== true
+            e.target.value === '' || !russianFormat.test(e.target.value)
               ? true
               : false,
         });

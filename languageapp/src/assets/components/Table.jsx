@@ -2,7 +2,7 @@ import React from 'react';
 import './Table.scss';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
-// import { words } from './dataWords';//нужно, если слова приходят не с сервера
+// import { words } from './dataWords';//нужно, если слова приходят не с сервераа из файла
 import Loader from './Loader';
 import ServerError from './ServerError';
 import { observer, inject } from 'mobx-react';

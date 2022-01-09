@@ -24,7 +24,7 @@ const TableRow = props => {
   const isRowInValid = useMemo(() => {
     return (
       rowData.english.search(englishFormat) === -1 ||
-      russianFormat.test(rowData.russian) !== true ||
+      !russianFormat.test(rowData.russian) ||
       rowData.english === '' ||
       rowData.transcription === '' ||
       rowData.russian === ''
@@ -35,14 +35,14 @@ const TableRow = props => {
 
   const classNameInputEnglish = classnames('', {
     redInputTableRow:
-      rowData.english === '' || englishFormat.test(rowData.english) !== true,
+      rowData.english === '' || !englishFormat.test(rowData.english),
   });
   const classNameInputTranscription = classnames('', {
     redInputTableRow: rowData.transcription === '',
   });
   const classNameInputRussian = classnames('', {
     redInputTableRow:
-      rowData.russian === '' || russianFormat.test(rowData.russian) !== true,
+      rowData.russian === '' || !russianFormat.test(rowData.russian),
   });
 
   const handleClick = () => setEditMode(!editMode); //по клику у строки появляется состояние редактируема
@@ -59,28 +59,6 @@ const TableRow = props => {
   const saveChanges = word => {
     props.saveChanges(word);
   };
-
-  //функция сохранения изменений слова НЕ РАБОТАЕТ????
-  // const saveChanges = () => {
-  //   fetch(`/api/words/${rowData.id}/update`, {
-  //     method: 'POST', //по умолчанию используется GET, поэтому POST надо конкретно прописать
-  //     body: JSON.stringify(rowData),
-  //     headers: {
-  //       'Content-Type': 'application/json; charset=utf-8', //отправляем в формате JSON
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(rowData => {
-  //       console.log(rowData);
-  //       // this.words.push(rowData);
-
-  //       updateData();
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       setError(true);
-  //     });
-  // };
 
   // функция удаления слова
   const deleteWord = id => {

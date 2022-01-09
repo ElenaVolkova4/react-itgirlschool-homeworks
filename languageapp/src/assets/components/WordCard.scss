@@ -16,6 +16,11 @@
   );
   color: rgb(49, 9, 87);
   border-radius: 10px;
+
+  @media screen and (max-width: $mobile) {
+    width: 100px;
+    height: 150px;
+  }
 }
 .checking {
   display: flex;

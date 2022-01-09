@@ -1,3 +1,5 @@
+@import '../styles/variables.scss';
+
 .cardsContainer {
   width: 600px;
   height: 400px;
@@ -10,6 +12,14 @@
 
   // border: 1px solid #efb1ff;
   border-radius: 10px;
+
+  @media screen and (max-width: $tablet) {
+    width: 300px;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 200px;
+    height: 250px;
+  }
 }
 
 .cardsContainer_cards {
@@ -18,6 +28,9 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  @media screen and (max-width: $mobile) {
+    gap: 10px;
+  }
 }
 .cardsContainer_count {
   text-align: center;
