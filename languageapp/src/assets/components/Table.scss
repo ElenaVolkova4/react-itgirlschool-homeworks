@@ -45,24 +45,29 @@
     font-size: 11px;
   }
 }
-.table tbody tr:nth-child(odd) {
+.table tbody tr:nth-child(odd) td {
+  //нечетные строки
   background: rgb(142, 107, 152, 0.75);
   color: $customLightTextColor;
 }
 
-.table tbody tr:nth-child(even) {
+.table tbody tr:nth-child(even) td {
+  //четные строки
   background: $customLightTextColor;
   color: rgb(49, 9, 87);
 }
 
 .table tbody tr:last-child td {
+  //последняя строка
   border-bottom: 1px solid $customLightTextColor;
 }
 
 .table tbody tr:last-child td:first-child {
+  //первая ячейка в последней строке
   border-radius: 0 0 0 10px;
 }
 
 .table tbody tr:last-child td:last-child {
+  //последняя ячейка последней строки
   border-radius: 0 0 10px 0;
 }
