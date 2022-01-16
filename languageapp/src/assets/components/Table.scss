@@ -1,19 +1,26 @@
 @import '../styles/variables.scss';
 
 .main_table {
-  max-width: 900px;
+  max-width: 1000px;
+  width: 700px;
+
+  min-width: 500px;
+  // overflow-x: scroll;
   overflow: auto; //для горизонтальной прокрутки таблицы
 }
 
 .table {
   width: 700px;
+  // width: 100%;
+  overflow-x: scroll;
+
   border: none;
   margin-bottom: 20px;
   border-collapse: separate;
 
-  @media screen and (max-width: $tablet) {
-    width: 350px;
-  }
+  // @media screen and (max-width: $tablet) {
+  //   width: 500px;
+  // }
 }
 
 .table tr th:first-child,
