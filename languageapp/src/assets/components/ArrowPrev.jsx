@@ -11,7 +11,6 @@ const ArrowPrev = props => {
   return (
     <div
       className={className}
-      // className="arrow"
       onClick={props.onClick}
       disabled={props.disabled}
     >

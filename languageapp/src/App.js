@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.scss';
 import Header from './assets/components/Header.jsx';
 import WordCard from './assets/components/WordCard.jsx';
@@ -7,20 +7,18 @@ import CardsContainer from './assets/components/CardsContainer.jsx';
 import Table from './assets/components/Table.jsx';
 import Footer from './assets/components/Footer.jsx';
 import ErrorPage from './assets/components/ErrorPage.jsx';
-
-import Primer from './primer';
-
-import { Switch, Route, Link } from 'react-router-dom';
+import NewWord from './assets/components/NewWord.jsx';
+import { Switch, Route } from 'react-router-dom';
 
 const App = () => {
   return (
     <div className="App">
       <Header />
       <main className="main">
-        <Primer />
         <Switch>
           <Route exact path="/" component={Table}></Route>
           <Route exact path="/game" component={CardsContainer}></Route>
+          <Route exact path="/new" component={NewWord}></Route>
           {/* страница ошибки - без path */}
           <Route component={ErrorPage}></Route>
 

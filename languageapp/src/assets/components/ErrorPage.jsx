@@ -1,7 +1,7 @@
 import React from 'react';
 import './ErrorPage.scss';
 import error from '../images/1.png';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
   return (

@@ -1,10 +1,9 @@
-import React, { useRef, useState, forwardRef } from 'react';
+import React, { useState } from 'react';
 import './WordCard.scss';
 import ButtonCheck from './Buttons/Button_check.jsx';
 
 const WordCard = props => {
   const [clicked, showTranslate] = useState(false); //Состояние, которое хранит индекс выделенной карточки
-  // не нужно const [iscountedLearnedCard, setcountedLearnedCard] = useState(false); //для подсчета выученных слов в тренировке
 
   const handleClick = () => {
     showTranslate(!clicked);

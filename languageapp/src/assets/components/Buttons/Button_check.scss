@@ -13,8 +13,11 @@
   font-size: 12px;
   cursor: pointer;
   &:focus {
-    // outline: none;
     outline: 2px dashed #473a95;
+  }
+
+  @media screen and (max-width: $mobile) {
+    font-size: 10px;
   }
 }
 

@@ -6,6 +6,12 @@
   align-items: center;
   padding-bottom: 20px;
   color: $customLightTextColor;
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    gap: 7px;
+    padding-bottom: 5px;
+  }
 }
 
 a {

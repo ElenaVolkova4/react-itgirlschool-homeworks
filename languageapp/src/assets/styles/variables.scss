@@ -4,10 +4,15 @@
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 }
-$customLightTextColor: rgb(238, 225, 238);
 
 @mixin flexCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+$customLightTextColor: rgb(238, 225, 238);
+
+$mobile: 380px;
+$tablet: 720px;
+$laptop: 1025px;
